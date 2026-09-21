@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+backend/.venv/
+
+# Node
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build-Artefakte
+dist/
+build/
+frontend/dist/
+
+# Umgebung und lokale Konfiguration
+.env
+.env.*
+!.env.example
+
+# Editoren und IDEs
+.vscode/
+.idea/
+*.swp
+*~
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
+desktop.ini
+nul
+
+# Laufzeitdaten des Backends
+backend/received_data/*
+!backend/received_data/.gitkeep
+
+# Reasoning-Ergebnisse und Graphansichten werden zur Laufzeit erzeugt
+backend/modeling-worlds/**/AIAS-inferred.owl
+backend/modeling-worlds/**/ontology_graph_instance.html
+backend/modeling-worlds/**/ontology_graph_inferred.html
+backend/modeling-worlds/**/ontology_graph.html

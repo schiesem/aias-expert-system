@@ -1,0 +1,17 @@
+{
+  "world_id": "23a6623a4fc07a54",
+  "name": "Exemplarisches Beispiel_Konzept-Modell",
+  "description": "Phase 3 model derived from Exemplarisches Beispiel_Ist-Modell",
+  "created_at": "2026-03-08T16:29:22.315505",
+  "last_modified": "2026-03-08T16:33:20.450687",
+  "node_count": 16,
+  "edge_count": 17,
+  "annotation_count": 2,
+  "project_name": "Exemplarisches Beispiel",
+  "dmme_phase": 3,
+  "phase_label": "Konzept-Modell",
+  "parent_world_id": "94603512dd7df9ef",
+  "child_world_ids": [],
+  "phase_created_at": "2026-03-08T16:29:22.315505",
+  "is_phase_model": true
+}

@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/schieseck/AIAS"
+         xmlns="http://www.semanticweb.org/schieseck/AIAS#"
+         xmlns:VDI3="http://www.semanticweb.org/schieseck/VDI3682#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/schieseck/AIAS">
+  <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/ISO22989"/>
+  <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/ISO7489"/>
+  <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/VDI3682"/>
+</owl:Ontology>
+
+<owl:ObjectProperty rdf:about="#communicatesWith"/>
+
+<owl:ObjectProperty rdf:about="#hasCommunication">
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasComponent">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <rdfs:range rdf:resource="#Component"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasFlow">
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Function"/>
+        <rdf:Description rdf:about="#Process"/>
+        <rdf:Description rdf:about="#Resource"/>
+        <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasFunction">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <rdfs:range rdf:resource="#Function"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasInputCommunication">
+  <rdfs:subPropertyOf rdf:resource="#hasCommunication"/>
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indicates incoming communication (from target to source)</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasOutputCommunication">
+  <rdfs:subPropertyOf rdf:resource="#hasCommunication"/>
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indicates outgoing communication (from source to target)</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasProduct">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasRelation">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <rdfs:range rdf:resource="#Relation"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#isAssignedBy"/>
+
+<owl:ObjectProperty rdf:about="#isAssignedTo">
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Component"/>
+        <rdf:Description rdf:about="#Function"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#hasName">
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:domain rdf:resource="#Relation"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human-readable display name for the element</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+
+<owl:Class rdf:about="#Component">
+  <rdfs:comment xml:lang="de">Eine Component ist ein Bauelement eines Systems, das eine bestimmte Aufgabe erfüllt und durch Relationen mit anderen Komponenten verbunden ist.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Function">
+  <rdfs:comment xml:lang="de">Eine Function beschreibt das Verhalten eines Systems oder einer Komponente, also was das System tut oder leisten soll, unabhängig von seiner konkreten Realisierung.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Process">
+  <rdfs:subClassOf rdf:resource="#Function"/>
+  <rdfs:comment xml:lang="de">Ein Process ist eine spezielle Function, die eine Folge von Aktivitäten zur Umwandlung von Eingaben in Ausgaben beschreibt.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Resource">
+  <owl:equivalentClass rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#TechnicalRessource"/>
+  <rdfs:subClassOf rdf:resource="#Component"/>
+  <rdfs:comment xml:lang="de">Eine Resource ist eine technische Komponente, die physische oder virtuelle Mittel zur Ausführung von Funktionen bereitstellt. Sie ist äquivalent zur TechnicalRessource aus VDI 3682.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Relation">
+  <rdfs:comment xml:lang="de">Eine Relation beschreibt die Beziehung zwischen Systemelementen, insbesondere zwischen Komponenten oder zwischen Funktionen und Komponenten.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Actuator">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein Actuator ist eine technische Ressource, die Signale oder Befehle in physische Aktionen umwandelt, um den Zustand eines Systems oder seiner Umgebung zu verändern.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#CloudSystem">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein CloudSystem ist eine technische Ressource, die Rechen- und Speicherkapazitäten über ein Netzwerk bereitstellt und skalierbare Dienste für die Verarbeitung und Speicherung von Daten ermöglicht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ComputerSystem">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein ComputerSystem ist eine technische Ressource, die Datenverarbeitung und -speicherung ermöglicht und als Oberbegriff für verschiedene Rechnertypen dient.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Controller">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein Controller ist eine technische Ressource, die als speicherprogrammierbare Steuerung (SPS) oder Industriesteuerung die Automatisierung von Prozessen ermöglicht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#EdgeDevice">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein EdgeDevice ist eine technische Ressource, die Datenverarbeitung am Rand des Netzwerks (Edge) durchführt, um Latenzzeiten zu reduzieren und lokale Entscheidungen zu ermöglichen.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExternalCloud">
+  <rdfs:subClassOf rdf:resource="#CloudSystem"/>
+  <rdfs:comment xml:lang="de">Eine ExternalCloud ist ein CloudSystem, das von einem externen Anbieter betrieben wird und dessen Infrastruktur außerhalb der Organisationsgrenzen liegt.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#InternalCloud">
+  <rdfs:subClassOf rdf:resource="#CloudSystem"/>
+  <rdfs:comment xml:lang="de">Eine InternalCloud ist ein CloudSystem, das innerhalb der eigenen Organisationsinfrastruktur betrieben wird und vollständig unter eigener Kontrolle steht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PersonalComputer">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein PersonalComputer ist eine technische Ressource in Form eines Einzelplatzrechners, der für die Interaktion mit Benutzern und die lokale Datenverarbeitung eingesetzt wird.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Sensor">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein Sensor ist eine technische Ressource, die physikalische oder chemische Größen erfasst und in verarbeitbare Signale umwandelt.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator">
+  <rdfs:subClassOf rdf:resource="#Function"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:ProcessOperator ist eine Spezialisierung von AIAS:Function und beschreibt Umwandlungsvorgänge von Zuständen gemäß der Formalisierung technischer Prozesse nach VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#world_de3a5c5b77be6227">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SmartShip-Projekt_Ist-Modell</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NJe-JY">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#-Uemls"/>
+  <isAssignedTo rdf:resource="#wXLNxg"/>
+  <isAssignedTo rdf:resource="#LaQ2kl"/>
+  <isAssignedTo rdf:resource="#tTYvhw"/>
+  <VDI3:hasOutput rdf:resource="#nAI5vo"/>
+  <VDI3:hasOutput rdf:resource="#iDdCD3"/>
+  <VDI3:hasInput rdf:resource="#AH9WQO"/>
+  <VDI3:hasInput rdf:resource="#UGqhaG"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Umwandlung</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#-Uemls">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#wXLNxg">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#LaQ2kl">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tTYvhw">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#nAI5vo">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#iDdCD3">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#AH9WQO">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#UGqhaG">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#bC1NAx">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasOutput rdf:resource="#UGqhaG"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kraftstoff</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#XtioBn">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasOutput rdf:resource="#AH9WQO"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sauerstoff</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#4b4rwN">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#iDdCD3"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Abgas</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BWO5h2">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#-Uemls"/>
+  <isAssignedTo rdf:resource="#ZA3eJs"/>
+  <hasCommunication rdf:resource="#35WdAv"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Öl-Temperatur</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ZA3eJs">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#35WdAv">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#42z6UB">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#wXLNxg"/>
+  <isAssignedTo rdf:resource="#rN-ECF"/>
+  <hasCommunication rdf:resource="#YPkOjh"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Füllstandssensor-Öl</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#rN-ECF">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#YPkOjh">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Q-3x3A">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#LaQ2kl"/>
+  <isAssignedTo rdf:resource="#57h3NP"/>
+  <hasOutputCommunication rdf:resource="#j3QP0U"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Drehzahlsensor</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#57h3NP">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#j3QP0U">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#i-h1W0">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#nAI5vo"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antriebsleistung</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ovmVMG">
+  <isAssignedTo rdf:resource="#tTYvhw"/>
+  <rdf:type rdf:resource="#Controller"/>
+  <isAssignedTo rdf:resource="#LNIX_9"/>
+  <hasCommunication rdf:resource="#S1rEmM"/>
+  <hasInputCommunication rdf:resource="#j3QP0U"/>
+  <hasCommunication rdf:resource="#YPkOjh"/>
+  <hasCommunication rdf:resource="#35WdAv"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Motorregler</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#LNIX_9">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#S1rEmM">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#qnBPQZ">
+  <rdf:type rdf:resource="#ComputerSystem"/>
+  <isAssignedTo rdf:resource="#IC6ozh"/>
+  <hasCommunication rdf:resource="#S1rEmM"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schiffscomputer</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#IC6ozh">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#qDVb_Y">
+  <isAssignedTo rdf:resource="#57h3NP"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Acquisition"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Umdrehung</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Hzn_aW">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Acquisition"/>
+  <isAssignedTo rdf:resource="#rN-ECF"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FlussSensor</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#sqcvG_">
+  <isAssignedTo rdf:resource="#ZA3eJs"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Acquisition"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ÖlTemp</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ZyWrXI">
+  <isAssignedTo rdf:resource="#LNIX_9"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Automate"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Motorregelung</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#iJVh7L">
+  <isAssignedTo rdf:resource="#IC6ozh"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Automate"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO7489#Communication">
+  <rdfs:subClassOf rdf:resource="#Relation"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO7489:Communication ist eine Spezialisierung von AIAS:Relation und modelliert Kommunikationsverbindungen zwischen Komponenten gemäß dem OSI-Referenzmodell (ISO/IEC 7498).
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Flow">
+  <rdfs:subClassOf rdf:resource="#Relation"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:Flow ist eine Spezialisierung von AIAS:Relation und modelliert den gerichteten Fluss von Produkten, Energien oder Informationen zwischen Prozessoperatoren gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Assignment">
+  <rdfs:subClassOf rdf:resource="#Relation"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:Assignment ist eine Spezialisierung von AIAS:Relation und verbindet Funktionen (ProcessOperator) mit Komponenten (TechnicalRessource) gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#hasOutput">
+  <rdfs:subPropertyOf rdf:resource="#hasFlow"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#hasInput">
+  <rdfs:subPropertyOf rdf:resource="#hasFlow"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO22989#Function">
+  <rdfs:subClassOf rdf:resource="#Function"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO22989:Function ist eine Spezialisierung von AIAS:Function und repräsentiert Funktionen im Kontext von KI-Systemen gemäß ISO/IEC 22989.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO22989#Data">
+  <owl:equivalentClass rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Data"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO22989:Data (KI-Daten) ist äquivalent zu ISO7489:Data (Netzwerk-Dateneinheit). Diese Äquivalenz ermöglicht es, dass Daten, die im KI-Kontext erzeugt werden (z.B. durch Acquisition), auch über Communication-Verbindungen übertragen werden können.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#State">
+  <rdfs:subClassOf rdf:resource="#Component"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:State ist eine Spezialisierung von AIAS:Component und repräsentiert Zustände von Produkten, Energien oder Informationen im Prozesskontext gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Actuator"/>
+    <rdf:Description rdf:about="#CloudSystem"/>
+    <rdf:Description rdf:about="#ComputerSystem"/>
+    <rdf:Description rdf:about="#Controller"/>
+    <rdf:Description rdf:about="#EdgeDevice"/>
+    <rdf:Description rdf:about="#PersonalComputer"/>
+    <rdf:Description rdf:about="#Sensor"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+
+</rdf:RDF>

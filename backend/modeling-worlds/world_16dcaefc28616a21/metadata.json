@@ -1,0 +1,19 @@
+{
+  "world_id": "16dcaefc28616a21",
+  "name": "Fallbeispiel 1 EKI_Konzept-Modell",
+  "description": "Phase 3 model derived from Fallbeispiel 1 EKI_Ist-Modell",
+  "created_at": "2026-02-26T10:35:00.367157",
+  "last_modified": "2026-03-08T13:07:23.259043",
+  "node_count": 32,
+  "edge_count": 34,
+  "annotation_count": 8,
+  "project_name": "Fallbeispiel 1 EKI",
+  "dmme_phase": 3,
+  "phase_label": "Konzept-Modell",
+  "parent_world_id": "e49fb4126b80346f",
+  "child_world_ids": [
+    "c62de5f5b4fafd48"
+  ],
+  "phase_created_at": "2026-02-26T10:35:00.367157",
+  "is_phase_model": true
+}

@@ -1,0 +1,17 @@
+{
+  "world_id": "20624d1067ef9b96",
+  "name": "Fallbeispiel 1 EKI_Deployment-Modell",
+  "description": "Phase 9 model derived from Fallbeispiel 1 EKI_Implementation-Modell",
+  "created_at": "2026-02-26T12:39:12.216974",
+  "last_modified": "2026-02-26T12:40:48.580948",
+  "node_count": 32,
+  "edge_count": 34,
+  "annotation_count": 12,
+  "project_name": "Fallbeispiel 1 EKI",
+  "dmme_phase": 9,
+  "phase_label": "Deployment-Modell",
+  "parent_world_id": "c62de5f5b4fafd48",
+  "child_world_ids": [],
+  "phase_created_at": "2026-02-26T12:39:12.216974",
+  "is_phase_model": true
+}

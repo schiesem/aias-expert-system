@@ -1,0 +1,17 @@
+{
+  "world_id": "5e4031f5ca770d0e",
+  "name": "SmartShip-Projekt_Deployment-Modell",
+  "description": "Phase 9 model derived from SmartShip-Projekt_Implementation-Modell",
+  "created_at": "2026-02-16T14:35:43.631363",
+  "last_modified": "2026-02-16T14:43:20.599092",
+  "node_count": 29,
+  "edge_count": 33,
+  "annotation_count": 5,
+  "project_name": "SmartShip-Projekt",
+  "dmme_phase": 9,
+  "phase_label": "Deployment-Modell",
+  "parent_world_id": "d2fd7d9cf20891ed",
+  "child_world_ids": [],
+  "phase_created_at": "2026-02-16T14:35:43.631363",
+  "is_phase_model": true
+}

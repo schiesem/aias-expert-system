@@ -1,0 +1,371 @@
+# SHACL Note Rules - Human Readable Format
+# This file describes advisory rules that generate warnings/hints for the AI system design
+# Each rule will be converted to SHACL syntax for validation
+
+# IMPORTANT STRUCTURE NOTES (from AIAS-instance.owl):
+# - Assignment is VDI3682:Assignment (not AIAS:Assignment)
+# - ProcessOperator is VDI3682:ProcessOperator (not AIAS:ProcessOperator)
+# - Functions (Inference, Training, etc.) are ISO22989 namespace
+# - Components (EdgeDevice, CloudSystem, Sensor, etc.) are AIAS namespace
+# - Property: AIAS:isAssignedTo connects both Functions and Components to Assignments
+# - Pattern: Function →isAssignedTo→ Assignment ←isAssignedTo← Component
+
+================================================================================
+Rule 1: Inferenz auf externe Cloud - Latenzzeiten
+================================================================================
+WENN: Eine Instanz von ISO22989:Inference über VDI3682:Assignment mit AIAS:CloudSystem verbunden ist
+      (beide nutzen AIAS:isAssignedTo zum selben Assignment)
+DANN: Hinweis "Bei der Inferenz auf einer externen Cloud können hohe Latenzzeiten auftreten."
+Betroffene Klassen: ISO22989:Inference, VDI3682:Assignment, AIAS:CloudSystem
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 2: Inferenz auf externe Cloud - Ausfallsicherheit
+================================================================================
+WENN: Eine Instanz von ISO22989:Inference über VDI3682:Assignment mit AIAS:CloudSystem verbunden ist
+DANN: Hinweis "Bei der Inferenz auf einer externen Cloud ist keine Ausfallsicherheit gegeben. Sobald die Verbindung zur Cloud oder der Anlage abbricht, kann die Inferenz nicht ausgeführt werden."
+Betroffene Klassen: ISO22989:Inference, VDI3682:Assignment, AIAS:CloudSystem
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 3: Inferenz auf externe Cloud - Kosten
+================================================================================
+WENN: Eine Instanz von ISO22989:Inference über VDI3682:Assignment mit AIAS:CloudSystem verbunden ist
+DANN: Hinweis "Möglicherweise hohe Kosten durch kontinuierliche und unsachgemäße Nutzung der Cloud. Bitte Anwenderzugang prüfen."
+Betroffene Klassen: ISO22989:Inference, VDI3682:Assignment, AIAS:CloudSystem
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 4: Inferenz auf Edge-Gerät - Rechenleistung
+================================================================================
+WENN: Eine Instanz von ISO22989:Inference über VDI3682:Assignment mit AIAS:EdgeDevice verbunden ist
+DANN: Hinweis "Die verfügbare Rechenleistung auf dem Edge-Gerät ist eventuell nicht ausreichend um das Modell auszuführen. Bitte die Rechenleistung prüfen."
+Betroffene Klassen: ISO22989:Inference, VDI3682:Assignment, AIAS:EdgeDevice
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 5: Inferenz auf Edge-Gerät - Rechendauer
+================================================================================
+WENN: Eine Instanz von ISO22989:Inference über VDI3682:Assignment mit AIAS:EdgeDevice verbunden ist
+DANN: Hinweis "Die verfügbare Rechenleistung auf dem Edge-Gerät ist eventuell nicht ausreichend um das Modell in der geforderten Zeit auszuführen. Bitte die Rechendauer prüfen."
+Betroffene Klassen: ISO22989:Inference, VDI3682:Assignment, AIAS:EdgeDevice
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 6: Training auf Edge-Gerät - Rechenleistung
+================================================================================
+WENN: Eine Instanz von ISO22989:Training über VDI3682:Assignment mit AIAS:EdgeDevice verbunden ist
+DANN: Hinweis "Die Rechenleistung auf dem Gerät ist eventuell nicht ausreichend für das Training."
+Betroffene Klassen: ISO22989:Training, VDI3682:Assignment, AIAS:EdgeDevice
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 7: Storage auf Edge-Gerät - Speicherplatz
+================================================================================
+WENN: Eine Instanz von ISO22989:Storage über VDI3682:Assignment mit AIAS:EdgeDevice verbunden ist
+DANN: Hinweis "Der Speicherplatz auf dem Gerät ist vermutlich gering. Bitte Speichermöglichkeiten prüfen."
+Betroffene Klassen: ISO22989:Storage, VDI3682:Assignment, AIAS:EdgeDevice
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 8: Storage auf externe Cloud - Kosten
+================================================================================
+WENN: Eine Instanz von ISO22989:Storage über VDI3682:Assignment mit AIAS:CloudSystem verbunden ist
+DANN: Hinweis "Zusätzlicher Speicher in der Cloud kann teuer werden. Bitte Konditionen über den Anbieter prüfen."
+Betroffene Klassen: ISO22989:Storage, VDI3682:Assignment, AIAS:CloudSystem
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 9: Acquisition auf Sensor - Wartung
+================================================================================
+WENN: Eine Instanz von ISO22989:Acquisition über VDI3682:Assignment mit AIAS:Sensor verbunden ist
+DANN: Hinweis "Ein Tausch des Sensors oder eine Rekalibrierung hat einen Einfluss auf die KI-Anwendung. Bitte den Anlagenbetreibern vermitteln."
+Betroffene Klassen: ISO22989:Acquisition, VDI3682:Assignment, AIAS:Sensor
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 10: Acquisition auf Actuator - Wartung
+================================================================================
+WENN: Eine Instanz von ISO22989:Acquisition über VDI3682:Assignment mit AIAS:Actuator verbunden ist
+DANN: Hinweis "Ein Tausch, eine Reparatur des Actuators oder eine Rekalibrierung hat einen Einfluss auf die KI-Anwendung. Bitte dem Anlagenbetreiber informieren."
+Betroffene Klassen: ISO22989:Acquisition, VDI3682:Assignment, AIAS:Actuator
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 11: Acquisition auf Controller - Updates
+================================================================================
+WENN: Eine Instanz von ISO22989:Acquisition über VDI3682:Assignment mit AIAS:Controller verbunden ist
+DANN: Hinweis "Ein Update des Controllers hat einen Einfluss auf die KI-Anwendung. Bitte dem Anlagenbetreiber informieren."
+Betroffene Klassen: ISO22989:Acquisition, VDI3682:Assignment, AIAS:Controller
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 12: Automate auf Controller - Code-Updates
+================================================================================
+WENN: Eine Instanz von ISO22989:Automate über VDI3682:Assignment mit AIAS:Controller verbunden ist
+DANN: Hinweis "Jedes Update und jede Aktualisierung des Steuerungscodes kann einen Einfluss auf die KI-Anwendung haben. Bitte dem Anlagenbetreiber informieren."
+Betroffene Klassen: ISO22989:Automate, VDI3682:Assignment, AIAS:Controller
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 13: Automate auf Edge-Device - Anpassungen
+================================================================================
+WENN: Eine Instanz von ISO22989:Automate über VDI3682:Assignment mit AIAS:EdgeDevice verbunden ist
+DANN: Hinweis "Jede Anpassung des Edge-Devices kann einen Einfluss auf die KI-Anwendung haben. Bitte dem Anlagenbetreiber informieren."
+Betroffene Klassen: ISO22989:Automate, VDI3682:Assignment, AIAS:EdgeDevice
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 14: Automate existiert - Komponentenanpassung
+================================================================================
+WENN: Eine Instanz von ISO22989:Automate existiert
+DANN: Hinweis "Wird die der Automate Funktion zugewiesene Komponente angepasst, kann das einen Einfluss auf die KI-Anwendung haben."
+Betroffene Klassen: ISO22989:Automate
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule 15: Storage existiert - Lebenszeit
+================================================================================
+WENN: Eine Instanz von ISO22989:Storage existiert
+DANN: Hinweis "Prüfen, ob der zur Verfügung stehende Speicher für die geplante Lebenszeit der Anwendung ausreichend ist."
+Betroffene Klassen: ISO22989:Storage
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule 16: Validierung existiert - Datentrennung
+================================================================================
+WENN: Eine Instanz von ISO22989:Validation existiert
+DANN: Hinweis "Bitte darauf achten, dass die Validierungsdaten und die Evaluationsdaten voneinander getrennt sind."
+Betroffene Klassen: ISO22989:Validation
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule 17: Evaluation existiert - Anlagenbetrieb
+================================================================================
+WENN: Eine Instanz von ISO22989:Evaluation existiert
+DANN: Hinweis "Bitte darauf achten, die Evaluation im Anlagenbetrieb in der richtigen Frequenz durchzuführen oder ein Konzept im Lebenszyklus der KI-Anwendung erforderlich ist."
+Betroffene Klassen: ISO22989:Evaluation
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule 18: ProcessOperator existiert - Prozessverantwortliche
+================================================================================
+WENN: Eine Instanz von VDI3682:ProcessOperator existiert
+DANN: Hinweis "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass dieser Prozessschritt des Prozessoperators Teil einer KI-Anwendung wird."
+Betroffene Klassen: VDI3682:ProcessOperator
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule 19: Keine Automate - Fehlende Definition
+================================================================================
+WENN: KEINE Instanz von ISO22989:Automate existiert
+DANN: Hinweis "Es fehlt eine Definition der Automatisierungsfunktion."
+Betroffene Klassen: ISO22989:Automate (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 20: Keine DataProcess - Vorverarbeitung
+================================================================================
+WENN: KEINE Instanz von ISO22989:DataProcess existiert
+DANN: Hinweis "Die Daten werden bisher nicht vorverarbeitet. Soll die Anwendung direkt mit Rohdaten arbeiten oder fehlt die Zuweisung in der Modellierung aktuell?"
+Betroffene Klassen: ISO22989:DataProcess (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 21: Keine Storage - Datenspeicherung
+================================================================================
+WENN: KEINE Instanz von ISO22989:Storage existiert
+DANN: Hinweis "Aktuell werden noch keine Daten gespeichert."
+Betroffene Klassen: ISO22989:Storage (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 22: Keine Acquisition - Datenaufzeichnung
+================================================================================
+WENN: KEINE Instanz von ISO22989:Acquisition existiert
+DANN: Hinweis "Es werden aktuell noch keine Daten aufgezeichnet."
+Betroffene Klassen: ISO22989:Acquisition (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 23: Keine Validation - Modellvalidierung
+================================================================================
+WENN: KEINE Instanz von ISO22989:Validation existiert
+DANN: Hinweis "Das Modell wird aktuell noch nicht validiert."
+Betroffene Klassen: ISO22989:Validation (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 24: Keine Evaluation - Modellevaluation
+================================================================================
+WENN: KEINE Instanz von ISO22989:Evaluation existiert
+DANN: Hinweis "Das Modell wird aktuell noch nicht evaluiert."
+Betroffene Klassen: ISO22989:Evaluation (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 25: Kein Training - Modelltraining
+================================================================================
+WENN: KEINE Instanz von ISO22989:Training existiert
+DANN: Hinweis "Aktuell wird noch kein Modell trainiert. Wird auf ein Standardmodell zugegriffen oder fehlt das Training in der Modellierung?"
+Betroffene Klassen: ISO22989:Training (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 26: Keine Inference - Inferenzausführung
+================================================================================
+WENN: KEINE Instanz von ISO22989:Inference existiert
+DANN: Hinweis "Aktuell wird noch keine Inferenz ausgeführt."
+Betroffene Klassen: ISO22989:Inference (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 27: Kein ProcessOperator - Technischer Prozess
+================================================================================
+WENN: KEINE Instanz von VDI3682:ProcessOperator existiert
+DANN: Hinweis "Aktuell ist noch kein Prozessoperator hinzugefügt. Soll kein technischer Prozess modelliert werden?"
+Betroffene Klassen: VDI3682:ProcessOperator (Nicht-Existenz)
+Betroffene Properties: Keine (Abwesenheit prüfen)
+
+================================================================================
+Rule 28: Training und Inferenz auf unterschiedlichen Geräten
+================================================================================
+WENN: Eine Instanz von ISO22989:Training über VDI3682:Assignment mit Komponente A verbunden ist UND
+      Eine Instanz von ISO22989:Inference über VDI3682:Assignment mit Komponente B verbunden ist UND
+      Komponente A ist NICHT gleich Komponente B
+DANN: Hinweis "Training und Inferenz ist auf unterschiedlichen Geräten, bitte prüfen, dass die Leistungsgrößen der Inferenzresource ausreichend ist."
+Betroffene Klassen: ISO22989:Training, ISO22989:Inference, VDI3682:Assignment, AIAS:Component
+Betroffene Properties: AIAS:isAssignedTo
+Hinweis: Komplexe Regel - erfordert Vergleich von zwei verschiedenen Assignments
+
+================================================================================
+Rule 29: Sensor auf ProcessOperator - Prozessverantwortliche
+================================================================================
+WENN: Eine Instanz von AIAS:Sensor über VDI3682:Assignment mit VDI3682:ProcessOperator verbunden ist
+DANN: Hinweis "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass der Sensor des Prozessoperators Teil einer KI-Anwendung wird."
+Betroffene Klassen: AIAS:Sensor, VDI3682:Assignment, VDI3682:ProcessOperator
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 30: Actuator auf ProcessOperator - Prozessverantwortliche
+================================================================================
+WENN: Eine Instanz von AIAS:Actuator über VDI3682:Assignment mit VDI3682:ProcessOperator verbunden ist
+DANN: Hinweis "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass der Actuator des Prozessoperators Teil einer KI-Anwendung wird."
+Betroffene Klassen: AIAS:Actuator, VDI3682:Assignment, VDI3682:ProcessOperator
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule 31: Controller auf ProcessOperator - Prozessverantwortliche
+================================================================================
+WENN: Eine Instanz von AIAS:Controller über VDI3682:Assignment mit VDI3682:ProcessOperator verbunden ist
+DANN: Hinweis "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass der Controller des Prozessoperators Teil einer KI-Anwendung wird."
+Betroffene Klassen: AIAS:Controller, VDI3682:Assignment, VDI3682:ProcessOperator
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+REGULATION RULES (VORSCHRIFTEN UND RICHTLINIEN)
+================================================================================
+
+================================================================================
+Rule I: AI-System Hochrisiko-Prüfung (EU AI Act Anhang III)
+================================================================================
+WENN: Ein AISystem existiert (Instanz von ISO22989:AISystem)
+DANN: Hinweis "Es ist zu prüfen, ob das KI-System einer in Anhang III genannten Anwendungskategorie zugeordnet ist (z. B. sicherheitskritische Steuerung, Qualitätsfreigabe sicherheitsrelevanter Produkte, Zugangskontrolle) oder als sicherheitsrelevante Funktion einer regulierten Maschine / Anlage eingesetzt wird und damit als Hochrisiko-KI nach EU AI Act einzustufen ist."
+Betroffene Klassen: ISO22989:AISystem
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule II: Entwicklungswerkzeuge Dokumentationspflicht (EU AI Act Anhang IV, 2a)
+================================================================================
+WENN: Trainings-, Validierungs-, Evaluations- oder Inferenz-Funktionen existieren
+      (Instanzen von ISO22989:Training ODER ISO22989:Validation ODER ISO22989:Evaluation ODER ISO22989:Inference)
+DANN: Hinweis "Wurden für die Entwicklung der KI weitere Werkzeuge eingesetzt? Wenn ja, ggf. die Pflicht zur Dokumentation der verwendeten Methoden und Werkzeuge nach Anhang IV, 2a beachten."
+Betroffene Klassen: ISO22989:Training, ISO22989:Validation, ISO22989:Evaluation, ISO22989:Inference
+Betroffene Properties: Keine (nur Existenz prüfen)
+
+================================================================================
+Rule III: Datenherkunft und -qualität Dokumentation (EU AI Act Art. 10)
+================================================================================
+WENN: Ein AISystem Training, Validation, Evaluation mit zugeordneten Datensätzen nutzt
+      UND KEINE Acquisition (Herkunft) ODER DataProcess (Vorverarbeitung) im Modell existiert
+DANN: Hinweis "Wenn Hochrisiko-KI sind Herkunft, Relevanz, Qualität und Eignung der Trainings- und Validierungsdaten zu dokumentieren nach EU AI Act, Art. 10"
+Betroffene Klassen: ISO22989:AISystem, ISO22989:Training, ISO22989:Validation, ISO22989:Evaluation, ISO22989:Acquisition, ISO22989:DataProcess
+Betroffene Properties: Kombination von Existenz- und Abwesenheitsprüfung
+Hinweis: Komplexe Regel - erfordert Prüfung auf Existenz von Training/Validation/Evaluation UND Abwesenheit von Acquisition/DataProcess
+
+================================================================================
+Rule IV: Inferenz auf Prozess-Ressourcen - Menschliche Kontrolle (EU AI Act Art. 14)
+================================================================================
+WENN: Inference-Funktionen auf Ressourcen ausgeführt werden, die direkt in den technischen Prozess eingreifen
+      (ISO22989:Inference über VDI3682:Assignment mit AIAS:Controller ODER AIAS:EdgeDevice ODER AIAS:Sensor ODER AIAS:Actuator verbunden ist
+       UND diese Ressourcen mit VDI3682:ProcessOperator verbunden sind)
+DANN: Hinweis "Prüfen, ob es sich aufgrund der Verteilung der Inferenzfunktionen um eine Regelungsaufgabe und ggf. um eine Hochrisikoanwendung handeln könnte. Wenn das der Fall ist, dann ist es wichtig, dass der Anwender eine erkennbare menschliche Kontroll- oder Abschaltmöglichkeit nach EU AI Act, Art 14 bereitstellt."
+Betroffene Klassen: ISO22989:Inference, VDI3682:Assignment, VDI3682:ProcessOperator, AIAS:Controller, AIAS:EdgeDevice, AIAS:Sensor, AIAS:Actuator
+Betroffene Properties: AIAS:isAssignedTo
+Hinweis: Komplexe Regel - erfordert Prüfung ob Inference-Ressource auch mit ProcessOperator verbunden ist
+
+================================================================================
+Rule V: Cloud-Speicherung personenbezogener Daten (DSGVO Art. 6 Abs. 1)
+================================================================================
+WENN: Eine Instanz von ISO22989:Storage ODER ISO22989:DataProcess über VDI3682:Assignment mit AIAS:CloudSystem verbunden ist
+DANN: Hinweis "Bei personenbezogenen Daten ist zu prüfen, ob eine Rechtsgrundlage nach Art. 6 Abs. 1 DSGVO vorliegt (z. B. Einwilligung, Vertrag, rechtliche Verpflichtung)."
+Betroffene Klassen: ISO22989:Storage, ISO22989:DataProcess, VDI3682:Assignment, AIAS:CloudSystem
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+Rule VI: Cloud-Speicherung Unternehmensdaten - Einwilligung Anlagenbetreiber
+================================================================================
+WENN: Eine Instanz von ISO22989:Storage ODER ISO22989:DataProcess über VDI3682:Assignment mit AIAS:CloudSystem verbunden ist
+DANN: Hinweis "Bei Unternehmensbezogenen Daten zunächst die Einwilligung durch den Anlagenbetreiber einholen."
+Betroffene Klassen: ISO22989:Storage, ISO22989:DataProcess, VDI3682:Assignment, AIAS:CloudSystem
+Betroffene Properties: AIAS:isAssignedTo
+
+================================================================================
+NOTES:
+================================================================================
+- Rules 1-13: Check for specific function-to-component assignments via VDI3682:Assignment
+- Rules 14-18: Check for EXISTENCE of specific function types (advisory warnings)
+- Rules 19-27: Check for ABSENCE of specific function types (warning about missing components)
+- Rule 28: Complex rule requiring comparison of two different assignments
+- Rules 29-31: Check for component-to-process operator assignments
+- Rules I-VI: REGULATION RULES - Check compliance with EU AI Act and GDPR requirements
+
+================================================================================
+IMPLEMENTATION STATUS:
+================================================================================
+✅ Rules 1-18, 29-31: Implemented in SHACL (shacl_rules_notes.ttl)
+   - Assignment-based rules (Function to Component via Assignment)
+   - Existence checks for specific function types
+
+✅ Rules 19-27: Implemented in SPARQL (sparql_rules_notes.json)
+   - Absence checks (checking for NON-existence of classes)
+   - SHACL limitation: Cannot check for absence across entire ontology
+   - Implementation: ASK queries with inverted logic
+
+✅ Rule 28: Implemented in SPARQL (sparql_rules_notes.json)
+   - Complex comparison (Training and Inference on different components)
+   - SHACL limitation: Complex multi-way joins with component comparison
+   - Implementation: SELECT query with FILTER for component inequality
+
+✅ Rules I-VI: Implemented in SPARQL (sparql_rules_notes.json)
+   - Regulation compliance checks (EU AI Act and GDPR)
+   - Rule I: AISystem existence check (Hochrisiko-Prüfung)
+   - Rule II: Development tools existence (OR logic for Training/Validation/Evaluation/Inference)
+   - Rule III: Data documentation (complex existence AND absence check)
+   - Rule IV: Inference on process resources (multi-level connection check)
+   - Rule V: Cloud storage GDPR check (personal data)
+   - Rule VI: Cloud storage consent check (company data)
+
+VALIDATION WORKFLOW:
+1. SHACL validation executes first (pyshacl with owlrl inference)
+2. SPARQL validation executes second (SPARQLValidator module)
+   - Absence checks (Rules 19-27)
+   - Complex rules (Rule 28)
+   - Regulation rules (Rules I-VI)
+3. Results are combined and returned as unified notes list
+
+FILES:
+- shacl_rules_notes.ttl: SHACL shapes for Rules 1-18, 29-31
+- sparql_rules_notes.json: SPARQL rule registry for Rules 19-28, I-VI
+- sparql_validator.py: SPARQL execution module (absence, complex, regulation checks)
+- validation_routes.py: Combined validation endpoint (/api/validation/notes)

@@ -1,0 +1,324 @@
+/**
+ * AnnotationWindow.css
+ *
+ * Styles for the annotation window modal interface.
+ */
+
+/* Overlay */
+.annotation-window-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Main Window */
+.annotation-window {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 800px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header */
+.annotation-window-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 2px solid #e0e0e0;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+}
+
+.annotation-window-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.annotation-window-title h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.annotation-count-badge {
+  background: #4CAF50;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
+}
+
+.annotation-window-close {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.annotation-window-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+/* Element Info */
+.annotation-element-info {
+  padding: 16px 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.element-info-row {
+  display: flex;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.element-info-row:last-child {
+  margin-bottom: 0;
+}
+
+.element-info-label {
+  font-weight: 600;
+  color: #555;
+  min-width: 100px;
+}
+
+.element-info-value {
+  color: #333;
+  font-family: 'Courier New', monospace;
+  background: white;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+/* Actions */
+.annotation-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid #e0e0e0;
+  background: white;
+}
+
+.annotation-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.annotation-btn:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #999;
+}
+
+.annotation-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.annotation-btn-refresh {
+  color: #2196F3;
+  border-color: #2196F3;
+}
+
+.annotation-btn-refresh:hover:not(:disabled) {
+  background: #e3f2fd;
+}
+
+.annotation-level-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.annotation-level-selector label {
+  font-weight: 500;
+  color: #555;
+}
+
+.annotation-level-selector select {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.annotation-level-selector select:hover {
+  border-color: #999;
+}
+
+.annotation-level-selector select:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+}
+
+/* Content */
+.annotation-window-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  min-height: 300px;
+}
+
+.annotation-window-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.annotation-window-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.annotation-window-content::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.annotation-window-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Error State */
+.annotation-error {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #ffebee;
+  border: 1px solid #ef5350;
+  border-radius: 6px;
+  color: #c62828;
+  font-size: 0.95rem;
+}
+
+.error-icon {
+  font-size: 1.5rem;
+}
+
+/* Empty State */
+.annotation-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+
+.annotation-empty p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.annotation-empty strong {
+  color: #333;
+  font-family: 'Courier New', monospace;
+}
+
+/* Levels Container */
+.annotation-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Relations Container (Flat Structure) */
+.annotation-relations-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-lg, 20px);
+}
+
+/* Footer */
+.annotation-window-footer {
+  padding: 12px 20px;
+  border-top: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.annotation-hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .annotation-window {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .annotation-window-title h2 {
+    font-size: 1.25rem;
+  }
+
+  .annotation-actions {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .annotation-level-selector {
+    justify-content: space-between;
+  }
+}

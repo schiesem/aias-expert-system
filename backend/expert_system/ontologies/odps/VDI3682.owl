@@ -1,0 +1,235 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/schieseck/VDI3682"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/schieseck/VDI3682">
+    <Prefix name="" IRI="http://www.semanticweb.org/schieseck/VDI3682/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="VDI3682" IRI="http://www.semanticweb.org/schieseck/VDI3682#"/>
+    <Declaration>
+        <Class IRI="#AlternativeFlow"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Assignment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Energy"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Flow"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Information"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ParallelFlow"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Process"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ProcessOperator"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Product"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#State"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#SystemBorder"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TechnicalRessource"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#consistsOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasElement"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasInput"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasOutput"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#isAssignedTo"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#AlternativeFlow"/>
+        <Class IRI="#Flow"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Energy"/>
+        <Class IRI="#State"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Information"/>
+        <Class IRI="#State"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ParallelFlow"/>
+        <Class IRI="#Flow"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Product"/>
+        <Class IRI="#State"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Assignment"/>
+        <Class IRI="#Flow"/>
+        <Class IRI="#Process"/>
+        <Class IRI="#ProcessOperator"/>
+        <Class IRI="#State"/>
+        <Class IRI="#SystemBorder"/>
+        <Class IRI="#TechnicalRessource"/>
+    </DisjointClasses>
+    <SymmetricObjectProperty>
+        <ObjectProperty IRI="#isAssignedTo"/>
+    </SymmetricObjectProperty>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#consistsOf"/>
+        <Class IRI="#Process"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasElement"/>
+        <Class IRI="#Flow"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasInput"/>
+        <ObjectUnionOf>
+            <Class IRI="#ProcessOperator"/>
+            <Class IRI="#State"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasOutput"/>
+        <ObjectUnionOf>
+            <Class IRI="#ProcessOperator"/>
+            <Class IRI="#State"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#isAssignedTo"/>
+        <ObjectUnionOf>
+            <Class IRI="#Assignment"/>
+            <Class IRI="#ProcessOperator"/>
+            <Class IRI="#TechnicalRessource"/>
+        </ObjectUnionOf>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#consistsOf"/>
+        <ObjectUnionOf>
+            <Class IRI="#Process"/>
+            <Class IRI="#ProcessOperator"/>
+            <Class IRI="#State"/>
+            <Class IRI="#SystemBorder"/>
+        </ObjectUnionOf>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasElement"/>
+        <Class IRI="#State"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasInput"/>
+        <Class IRI="#Flow"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasOutput"/>
+        <Class IRI="#Flow"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#isAssignedTo"/>
+        <ObjectUnionOf>
+            <Class IRI="#Assignment"/>
+            <Class IRI="#ProcessOperator"/>
+            <Class IRI="#TechnicalRessource"/>
+        </ObjectUnionOf>
+    </ObjectPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#AlternativeFlow</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Assignment</IRI>
+        <Literal xml:lang="de">Ein Assignment ist eine strukturelle Verbindung zwischen Prozessoperator und technischer Ressource, über die einer Ressource die Ausführung eines Prozessoperators zugewiesen wird.
+
+**Quelle (Norm):** VDI 3682, Kapitel 4.2</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Energy</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Flow</IRI>
+        <Literal xml:lang="de">Ein Flow ist eine gerichtete Verbindung von Produkten zwischen Prozessoperatoren.
+
+**Quelle (Norm):** VDI 3682, Kapitel 4.1, Seite 8</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Information</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ParallelFlow</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Process</IRI>
+        <Literal xml:lang="de">Ein Process ist ein Netz zur Beschreibung technischer Prozesse, dessen Knoten die Zustände von Produkten und dessen gerichtete Kanten die Umwandlungsschritte durch Prozessoperatoren darstellen.
+
+**Quelle (Norm):** VDI 3682, Kapitel 4.1, Seite 8</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#ProcessOperator</IRI>
+        <Literal xml:lang="de">Ein ProcessOperator ist ein Vorgang, durch den der Eingangszustand von Produkten, Energien oder Informationen in einen Ausgangszustand umgewandelt wird.
+
+**Quelle (Norm):** VDI 3682, Kapitel 4.1, Seite 8f</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Product</IRI>
+        <Literal xml:lang="de">Ein Product sind Dinge der realen Welt, die im Rahmen eines technischen Prozesses umgewandelt werden.
+
+**Quelle (Norm):** VDI 3682, Kapitel 4.1, Seite 8</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#State</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#SystemBorder</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#TechnicalRessource</IRI>
+        <Literal xml:lang="de">Eine TechnicalResource sind physische Komponenten, aus denen automatisierte Anlagen aufgebaut sind und die die Umwandlungen der Produkte durch Prozessoperatoren realisieren.
+
+**Quelle (Norm):** VDI 3682, Kapitel 4.2</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

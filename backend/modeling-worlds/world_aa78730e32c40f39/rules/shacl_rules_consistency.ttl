@@ -1,0 +1,57 @@
+# Prefix-Deklarationen – diese binden verkürzte Namensräume (z. B. sh:, xsd:) an ihre vollständigen URIs
+@prefix rdf:   	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    	<http://www.w3.org/ns/shacl#> .
+@prefix xsd:   	<http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   	<http://www.w3.org/2002/07/owl#> .
+@prefix AIAS:  	<http://www.semanticweb.org/schieseck/AIAS#> .
+@prefix ISO22989: 	<http://www.semanticweb.org/schieseck/ISO22989#> .
+@prefix ISO7489: 	<http://www.semanticweb.org/schieseck/ISO7489#> .
+@prefix VDI3682: 	<http://www.semanticweb.org/schieseck/VDI3682#> .
+
+# Jede Resource muss mindestens eine Kommunikationsbeziehung haben.
+# Test erfolgreich
+AIAS:ResourceShape
+    a sh:NodeShape ;
+    sh:targetClass AIAS:Resource ;
+    sh:property [
+        sh:path AIAS:hasCommunication ;
+        sh:minCount 1 ;
+        sh:message "Jede Resource muss mindestens eine hasCommunication-Beziehung haben." ;
+    ] .
+
+# Jeder Prozess muss mindestens einen Flow besitzen.
+# Test erfolgreich
+AIAS:ProcessShape
+    a sh:NodeShape ;
+    sh:targetClass AIAS:Process ;
+    sh:property [
+        sh:path AIAS:hasFlow ;
+        sh:minCount 1 ;
+        sh:message "Ein Prozess muss mindestens einen Fluss (Input/Output) besitzen." ;
+    ] .
+
+# Jedes Produkt muss mindestens einen Flow besitzen.
+# Test erfolgreich
+AIAS:ProductShape
+    a sh:NodeShape ;
+    sh:targetClass VDI3682:Product ;
+    sh:property [
+        sh:path AIAS:hasFlow ;
+        sh:minCount 1 ;
+        sh:message "Ein Produkt muss mindestens einen Fluss (Flow) besitzen." ;
+    ] .
+
+
+# Jede Funktion muss mindestens ein Assignment zugewiesen bekommen haben
+AIAS:FunctionShape
+    a sh:NodeShape ;
+    sh:targetClass AIAS:Function ;
+    sh:property [
+        sh:path AIAS:isAssignedTo ;
+        sh:node AIAS:Assignment ;  # Das Assignment muss eine Instanz der Klasse Assignment sein
+        sh:minCount 1 ;
+        sh:message "Jede Funktion muss mindestens ein Assignment zugewiesen bekommen haben." ;
+    ] .
+
+

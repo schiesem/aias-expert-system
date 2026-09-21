@@ -1,0 +1,1170 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/schieseck/AIAS"
+         xmlns="http://www.semanticweb.org/schieseck/AIAS#"
+         xmlns:VDI3="http://www.semanticweb.org/schieseck/VDI3682#"
+         xmlns:ISO2="http://www.semanticweb.org/schieseck/ISO22989#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/schieseck/AIAS">
+  <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/ISO22989"/>
+  <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/ISO7489"/>
+  <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/VDI3682"/>
+</owl:Ontology>
+
+<owl:ObjectProperty rdf:about="#communicatesWith"/>
+
+<owl:ObjectProperty rdf:about="#hasCommunication">
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasComponent">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <rdfs:range rdf:resource="#Component"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasFlow">
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Function"/>
+        <rdf:Description rdf:about="#Process"/>
+        <rdf:Description rdf:about="#Resource"/>
+        <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasFunction">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <rdfs:range rdf:resource="#Function"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasInputCommunication">
+  <rdfs:subPropertyOf rdf:resource="#hasCommunication"/>
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indicates incoming communication (from target to source)</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasOutputCommunication">
+  <rdfs:subPropertyOf rdf:resource="#hasCommunication"/>
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indicates outgoing communication (from source to target)</rdfs:comment>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasProduct">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasRelation">
+  <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <rdfs:range rdf:resource="#Relation"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#isAssignedBy"/>
+
+<owl:ObjectProperty rdf:about="#isAssignedTo">
+  <rdfs:domain>
+    <owl:Class>
+      <owl:unionOf rdf:parseType="Collection">
+        <rdf:Description rdf:about="#Component"/>
+        <rdf:Description rdf:about="#Function"/>
+      </owl:unionOf>
+    </owl:Class>
+  </rdfs:domain>
+  <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#hasName">
+  <rdfs:domain rdf:resource="#Component"/>
+  <rdfs:domain rdf:resource="#Relation"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human-readable display name for the element</rdfs:comment>
+</owl:DatatypeProperty>
+
+<owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+
+<owl:Class rdf:about="#Component">
+  <rdfs:comment xml:lang="de">Eine Component ist ein Bauelement eines Systems, das eine bestimmte Aufgabe erfüllt und durch Relationen mit anderen Komponenten verbunden ist.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Function">
+  <rdfs:comment xml:lang="de">Eine Function beschreibt das Verhalten eines Systems oder einer Komponente, also was das System tut oder leisten soll, unabhängig von seiner konkreten Realisierung.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Process">
+  <rdfs:subClassOf rdf:resource="#Function"/>
+  <rdfs:comment xml:lang="de">Ein Process ist eine spezielle Function, die eine Folge von Aktivitäten zur Umwandlung von Eingaben in Ausgaben beschreibt.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Resource">
+  <owl:equivalentClass rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#TechnicalRessource"/>
+  <rdfs:subClassOf rdf:resource="#Component"/>
+  <rdfs:comment xml:lang="de">Eine Resource ist eine technische Komponente, die physische oder virtuelle Mittel zur Ausführung von Funktionen bereitstellt. Sie ist äquivalent zur TechnicalRessource aus VDI 3682.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Relation">
+  <rdfs:comment xml:lang="de">Eine Relation beschreibt die Beziehung zwischen Systemelementen, insbesondere zwischen Komponenten oder zwischen Funktionen und Komponenten.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Actuator">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein Actuator ist eine technische Ressource, die Signale oder Befehle in physische Aktionen umwandelt, um den Zustand eines Systems oder seiner Umgebung zu verändern.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#CloudSystem">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein CloudSystem ist eine technische Ressource, die Rechen- und Speicherkapazitäten über ein Netzwerk bereitstellt und skalierbare Dienste für die Verarbeitung und Speicherung von Daten ermöglicht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ComputerSystem">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein ComputerSystem ist eine technische Ressource, die Datenverarbeitung und -speicherung ermöglicht und als Oberbegriff für verschiedene Rechnertypen dient.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Controller">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein Controller ist eine technische Ressource, die als speicherprogrammierbare Steuerung (SPS) oder Industriesteuerung die Automatisierung von Prozessen ermöglicht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#EdgeDevice">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein EdgeDevice ist eine technische Ressource, die Datenverarbeitung am Rand des Netzwerks (Edge) durchführt, um Latenzzeiten zu reduzieren und lokale Entscheidungen zu ermöglichen.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExternalCloud">
+  <rdfs:subClassOf rdf:resource="#CloudSystem"/>
+  <rdfs:comment xml:lang="de">Eine ExternalCloud ist ein CloudSystem, das von einem externen Anbieter betrieben wird und dessen Infrastruktur außerhalb der Organisationsgrenzen liegt.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#InternalCloud">
+  <rdfs:subClassOf rdf:resource="#CloudSystem"/>
+  <rdfs:comment xml:lang="de">Eine InternalCloud ist ein CloudSystem, das innerhalb der eigenen Organisationsinfrastruktur betrieben wird und vollständig unter eigener Kontrolle steht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PersonalComputer">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein PersonalComputer ist eine technische Ressource in Form eines Einzelplatzrechners, der für die Interaktion mit Benutzern und die lokale Datenverarbeitung eingesetzt wird.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#Sensor">
+  <rdfs:subClassOf rdf:resource="#Resource"/>
+  <rdfs:comment xml:lang="de">Ein Sensor ist eine technische Ressource, die physikalische oder chemische Größen erfasst und in verarbeitbare Signale umwandelt.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator">
+  <rdfs:subClassOf rdf:resource="#Function"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:ProcessOperator ist eine Spezialisierung von AIAS:Function und beschreibt Umwandlungsvorgänge von Zuständen gemäß der Formalisierung technischer Prozesse nach VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#world_4001d08ba243d299">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">K(ISS)-Projekt_Deployment-Modell</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#zuJXRT">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasOutput rdf:resource="#Cf3wH5"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eingabeluft</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Cf3wH5">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Bu2bly">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#BDtxK9"/>
+  <isAssignedTo rdf:resource="#TWctye"/>
+  <isAssignedTo rdf:resource="#bGcM0u"/>
+  <isAssignedTo rdf:resource="#ZfCav3"/>
+  <isAssignedTo rdf:resource="#WX1gNC"/>
+  <VDI3:hasInput rdf:resource="#Cf3wH5"/>
+  <VDI3:hasInput rdf:resource="#EnKVB_"/>
+  <VDI3:hasOutput rdf:resource="#LHf3Mr"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fördern</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BDtxK9">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TWctye">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#bGcM0u">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ZfCav3">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#WX1gNC">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#EnKVB_">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#LHf3Mr">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BbYQCM">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#LHf3Mr"/>
+  <VDI3:hasOutput rdf:resource="#Akt1Qw"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eingabeluft</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Akt1Qw">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#2ENg7y">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#XEYKPU"/>
+  <VDI3:hasInput rdf:resource="#Akt1Qw"/>
+  <VDI3:hasOutput rdf:resource="#Ui8ORD"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filtern</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#XEYKPU">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Ui8ORD">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Qb9zC0">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#Ui8ORD"/>
+  <VDI3:hasOutput rdf:resource="#kZNvct"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gefilterte Luft</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#kZNvct">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MLu9F4">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#Yb99cz"/>
+  <VDI3:hasInput rdf:resource="#kZNvct"/>
+  <VDI3:hasOutput rdf:resource="#zO0mqt"/>
+  <VDI3:hasOutput rdf:resource="#7y3XnJ"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Schalten</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Yb99cz">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#zO0mqt">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#7y3XnJ">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#oEBlRW">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#zO0mqt"/>
+  <VDI3:hasOutput rdf:resource="#wuVHl2"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#wuVHl2">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#zScVV4">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#7y3XnJ"/>
+  <VDI3:hasOutput rdf:resource="#TVCTVR"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TVCTVR">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#o5KLRe">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#4Bevp2"/>
+  <isAssignedTo rdf:resource="#vK-EN5"/>
+  <isAssignedTo rdf:resource="#6uvEPr"/>
+  <VDI3:hasInput rdf:resource="#wuVHl2"/>
+  <VDI3:hasOutput rdf:resource="#5EqKKb"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heizen</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#4Bevp2">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#vK-EN5">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#6uvEPr">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#5EqKKb">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#-H_CfA">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#bioPL-"/>
+  <isAssignedTo rdf:resource="#vrHM7v"/>
+  <isAssignedTo rdf:resource="#ALO9Ri"/>
+  <VDI3:hasInput rdf:resource="#TVCTVR"/>
+  <VDI3:hasOutput rdf:resource="#RXM4O8"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kühlen</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#bioPL-">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#vrHM7v">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ALO9Ri">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#RXM4O8">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#kQROjh">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#5EqKKb"/>
+  <VDI3:hasInput rdf:resource="#RXM4O8"/>
+  <VDI3:hasOutput rdf:resource="#_5lnak"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Temeprierte Luft</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#_5lnak">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#OtREvu">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <VDI3:hasInput rdf:resource="#_5lnak"/>
+  <VDI3:hasOutput rdf:resource="#vbiIGE"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Nutzen</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#vbiIGE">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#7QyaTY">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasInput rdf:resource="#vbiIGE"/>
+  <VDI3:hasOutput rdf:resource="#LufyLo"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benutzte Luft</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#LufyLo">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#tel09F">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator"/>
+  <isAssignedTo rdf:resource="#HKLQau"/>
+  <isAssignedTo rdf:resource="#_26Z-L"/>
+  <isAssignedTo rdf:resource="#lZnIvg"/>
+  <isAssignedTo rdf:resource="#RFMeTn"/>
+  <isAssignedTo rdf:resource="#po6nXn"/>
+  <isAssignedTo rdf:resource="#VBvw4P"/>
+  <isAssignedTo rdf:resource="#ga6KL5"/>
+  <isAssignedTo rdf:resource="#YIn8hR"/>
+  <isAssignedTo rdf:resource="#XGz2N_"/>
+  <isAssignedTo rdf:resource="#e8bo-k"/>
+  <isAssignedTo rdf:resource="#X_OZn6"/>
+  <isAssignedTo rdf:resource="#qa2Npw"/>
+  <isAssignedTo rdf:resource="#5apP89"/>
+  <isAssignedTo rdf:resource="#nj69vO"/>
+  <isAssignedTo rdf:resource="#68ebOK"/>
+  <isAssignedTo rdf:resource="#8801hC"/>
+  <isAssignedTo rdf:resource="#KNObzr"/>
+  <isAssignedTo rdf:resource="#PoV-HJ"/>
+  <isAssignedTo rdf:resource="#hFUHWd"/>
+  <VDI3:hasInput rdf:resource="#LufyLo"/>
+  <VDI3:hasOutput rdf:resource="#u0vkpj"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fördern</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HKLQau">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#_26Z-L">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lZnIvg">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#RFMeTn">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#po6nXn">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#VBvw4P">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ga6KL5">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#YIn8hR">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#XGz2N_">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#e8bo-k">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#X_OZn6">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#qa2Npw">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#5apP89">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#nj69vO">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#68ebOK">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#8801hC">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KNObzr">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PoV-HJ">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#hFUHWd">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#u0vkpj">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#0KplbH">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+  <VDI3:hasOutput rdf:resource="#EnKVB_"/>
+  <VDI3:hasInput rdf:resource="#u0vkpj"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Benutzte Luft</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#x9gWHM">
+  <rdf:type rdf:resource="#Actuator"/>
+  <isAssignedTo rdf:resource="#BDtxK9"/>
+  <hasInputCommunication rdf:resource="#2dlAle"/>
+  <hasOutputCommunication rdf:resource="#q25CGA"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISFA</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#2dlAle">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#q25CGA">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#knj6ql">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#WX1gNC"/>
+  <isAssignedTo rdf:resource="#Tr7dPG"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TempSens1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Tr7dPG">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#s_Rwpm">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#ZfCav3"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AFS2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#CB8ro8">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#bGcM0u"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AFS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#yB1ftR">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#TWctye"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DPS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#jVcwiY">
+  <isAssignedTo rdf:resource="#XEYKPU"/>
+  <rdf:type rdf:resource="#Actuator"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HEPA</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#IXc-2r">
+  <isAssignedTo rdf:resource="#bioPL-"/>
+  <rdf:type rdf:resource="#Actuator"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Core1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#bpUvQO">
+  <isAssignedTo rdf:resource="#4Bevp2"/>
+  <rdf:type rdf:resource="#Actuator"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Core2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#zlry6X">
+  <rdf:type rdf:resource="#Resource"/>
+  <isAssignedTo rdf:resource="#HKLQau"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CFA1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BjpyX8">
+  <isAssignedTo rdf:resource="#_26Z-L"/>
+  <rdf:type rdf:resource="#Actuator"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CFA2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BB0J7a">
+  <isAssignedTo rdf:resource="#lZnIvg"/>
+  <rdf:type rdf:resource="#Actuator"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">IRFA</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Fc-PA_">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#vrHM7v"/>
+  <isAssignedTo rdf:resource="#6uvEPr"/>
+  <isAssignedTo rdf:resource="#OI4tbk"/>
+  <hasOutputCommunication rdf:resource="#4TU5M6"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PPOS2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#OI4tbk">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#4TU5M6">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#kGXcEn">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#ALO9Ri"/>
+  <isAssignedTo rdf:resource="#vK-EN5"/>
+  <isAssignedTo rdf:resource="#ZUn20t"/>
+  <hasOutputCommunication rdf:resource="#CUQpkM"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PPOS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ZUn20t">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#CUQpkM">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#hM7uOA">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#5apP89"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTS6</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ghtC8w">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#qa2Npw"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTS5</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#HpPv1H">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#X_OZn6"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTS4</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#olqzyy">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#8801hC"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SD1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#dX0hU4">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#e8bo-k"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTS3</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MOYCon">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#XGz2N_"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTS2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#D04DXn">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#hFUHWd"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PCCS2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#P_6VbU">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#nj69vO"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#IujTge">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#ga6KL5"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TPS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#0xvOgK">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#VBvw4P"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TPS2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#K55h9S">
+  <isAssignedTo rdf:resource="#RFMeTn"/>
+  <rdf:type rdf:resource="#Sensor"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TPS4</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#6xFs-n">
+  <isAssignedTo rdf:resource="#po6nXn"/>
+  <rdf:type rdf:resource="#Sensor"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TPS3</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#dFf4DW">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#PoV-HJ"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PCCS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TvMFir">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#68ebOK"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HS2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#eRXaxh">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#YIn8hR"/>
+  <isAssignedTo rdf:resource="#NvDVHM"/>
+  <hasOutputCommunication rdf:resource="#TjUJa2"/>
+  <hasOutputCommunication rdf:resource="#mhoD3M"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTS1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NvDVHM">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TjUJa2">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#mhoD3M">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#uCFdyJ">
+  <rdf:type rdf:resource="#Sensor"/>
+  <isAssignedTo rdf:resource="#KNObzr"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SD1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#YqH_Pc">
+  <isAssignedTo rdf:resource="#Tr7dPG"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Acquisition"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tempsens1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#YVOKhN">
+  <rdf:type rdf:resource="#Function"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#CAGcZo">
+  <rdf:type rdf:resource="#Function"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#LhlXKH">
+  <rdf:type rdf:resource="#Function"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#2zDL7n">
+  <isAssignedTo rdf:resource="#OI4tbk"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Acquisition"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#7LhWC4">
+  <isAssignedTo rdf:resource="#ZUn20t"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Acquisition"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#JCIRgE">
+  <isAssignedTo rdf:resource="#3n3wTb"/>
+  <rdf:type rdf:resource="#Controller"/>
+  <hasInputCommunication rdf:resource="#CUQpkM"/>
+  <hasInputCommunication rdf:resource="#mhoD3M"/>
+  <hasInputCommunication rdf:resource="#PhifrU"/>
+  <hasOutputCommunication rdf:resource="#DIUoLw"/>
+  <hasCommunication rdf:resource="#4oIfAh"/>
+  <hasOutputCommunication rdf:resource="#cLkigc"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTCU2</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#3n3wTb">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PhifrU">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DIUoLw">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#4oIfAh">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cLkigc">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#sA5F5S">
+  <isAssignedTo rdf:resource="#oDGfKQ"/>
+  <rdf:type rdf:resource="#Controller"/>
+  <hasInputCommunication rdf:resource="#4TU5M6"/>
+  <hasInputCommunication rdf:resource="#TjUJa2"/>
+  <hasCommunication rdf:resource="#4oIfAh"/>
+  <hasInputCommunication rdf:resource="#rJSloT"/>
+  <hasOutputCommunication rdf:resource="#98KgbY"/>
+  <hasOutputCommunication rdf:resource="#UFfAr3"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CTCU1</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#oDGfKQ">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#rJSloT">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#98KgbY">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#UFfAr3">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#NY038D">
+  <isAssignedTo rdf:resource="#3n3wTb"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Automate"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#n2vgNC">
+  <isAssignedTo rdf:resource="#oDGfKQ"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Automate"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#7Onkt3">
+  <isAssignedTo rdf:resource="#Yb99cz"/>
+  <rdf:type rdf:resource="#Actuator"/>
+  <hasInputCommunication rdf:resource="#cLkigc"/>
+  <hasInputCommunication rdf:resource="#UFfAr3"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TCV</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#AhBPG8">
+  <rdf:type rdf:resource="#InternalCloud"/>
+  <isAssignedTo rdf:resource="#TfyMyv"/>
+  <hasInputCommunication rdf:resource="#q25CGA"/>
+  <hasInputCommunication rdf:resource="#DIUoLw"/>
+  <hasInputCommunication rdf:resource="#98KgbY"/>
+  <hasOutputCommunication rdf:resource="#Dmuc40"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DLR-Server</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TfyMyv">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Dmuc40">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#EDaLMV">
+  <rdf:type rdf:resource="#InternalCloud"/>
+  <isAssignedTo rdf:resource="#TEip98"/>
+  <isAssignedTo rdf:resource="#xOOtFP"/>
+  <hasInputCommunication rdf:resource="#Dmuc40"/>
+  <hasOutputCommunication rdf:resource="#pm4wjx"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Airbus-Server</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TEip98">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#xOOtFP">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#pm4wjx">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#bIcUhm">
+  <rdf:type rdf:resource="#InternalCloud"/>
+  <isAssignedTo rdf:resource="#lnGW8o"/>
+  <isAssignedTo rdf:resource="#893k15"/>
+  <isAssignedTo rdf:resource="#Wvs9X-"/>
+  <isAssignedTo rdf:resource="#z5RGgT"/>
+  <hasInputCommunication rdf:resource="#pm4wjx"/>
+  <hasInputCommunication rdf:resource="#5prlAi"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">HSU-Server</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#lnGW8o">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#893k15">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Wvs9X-">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#z5RGgT">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#5prlAi">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#RGLE07">
+  <isAssignedTo rdf:resource="#TfyMyv"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Storage"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#YI6dr5">
+  <isAssignedTo rdf:resource="#TEip98"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Storage"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#XlrU9J">
+  <isAssignedTo rdf:resource="#xOOtFP"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#DataProcess"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#gGGl3e">
+  <isAssignedTo rdf:resource="#lnGW8o"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Storage"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#_xC9Hj">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Inference"/>
+  <isAssignedTo rdf:resource="#893k15"/>
+  <ISO2:creates rdf:resource="#yHMqqp"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anomalie/Diagnose</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#yHMqqp">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Prediction"/>
+  <isAssignedTo rdf:resource="#JPVvqu"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#JPVvqu">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#JpXg0D">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Training"/>
+  <isAssignedTo rdf:resource="#Wvs9X-"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#zeSydr">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Evaluation"/>
+  <isAssignedTo rdf:resource="#z5RGgT"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#VHqxrR">
+  <rdf:type rdf:resource="#Resource"/>
+  <isAssignedTo rdf:resource="#u4HrWQ"/>
+  <hasOutputCommunication rdf:resource="#5prlAi"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#u4HrWQ">
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#K7Ckf3">
+  <isAssignedTo rdf:resource="#u4HrWQ"/>
+  <rdf:type rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#Training"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#fdU-u_">
+  <rdf:type rdf:resource="#ComputerSystem"/>
+  <isAssignedTo rdf:resource="#JPVvqu"/>
+  <hasOutputCommunication rdf:resource="#2dlAle"/>
+  <hasOutputCommunication rdf:resource="#PhifrU"/>
+  <hasOutputCommunication rdf:resource="#rJSloT"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#XDsr2u">
+  <rdf:type rdf:resource="#Function"/>
+  <isAssignedTo rdf:resource="#NvDVHM"/>
+  <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">undefined</hasName>
+</owl:NamedIndividual>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO7489#Communication">
+  <rdfs:subClassOf rdf:resource="#Relation"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO7489:Communication ist eine Spezialisierung von AIAS:Relation und modelliert Kommunikationsverbindungen zwischen Komponenten gemäß dem OSI-Referenzmodell (ISO/IEC 7498).
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Flow">
+  <rdfs:subClassOf rdf:resource="#Relation"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:Flow ist eine Spezialisierung von AIAS:Relation und modelliert den gerichteten Fluss von Produkten, Energien oder Informationen zwischen Prozessoperatoren gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Assignment">
+  <rdfs:subClassOf rdf:resource="#Relation"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:Assignment ist eine Spezialisierung von AIAS:Relation und verbindet Funktionen (ProcessOperator) mit Komponenten (TechnicalRessource) gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#hasOutput">
+  <rdfs:subPropertyOf rdf:resource="#hasFlow"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#hasInput">
+  <rdfs:subPropertyOf rdf:resource="#hasFlow"/>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO22989#Function">
+  <rdfs:subClassOf rdf:resource="#Function"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO22989:Function ist eine Spezialisierung von AIAS:Function und repräsentiert Funktionen im Kontext von KI-Systemen gemäß ISO/IEC 22989.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO22989#Data">
+  <owl:equivalentClass rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Data"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO22989:Data (KI-Daten) ist äquivalent zu ISO7489:Data (Netzwerk-Dateneinheit). Diese Äquivalenz ermöglicht es, dass Daten, die im KI-Kontext erzeugt werden (z.B. durch Acquisition), auch über Communication-Verbindungen übertragen werden können.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#State">
+  <rdfs:subClassOf rdf:resource="#Component"/>
+  <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:State ist eine Spezialisierung von AIAS:Component und repräsentiert Zustände von Produkten, Energien oder Informationen im Prozesskontext gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+</rdf:Description>
+
+<owl:AllDisjointClasses>
+  <owl:members rdf:parseType="Collection">
+    <rdf:Description rdf:about="#Actuator"/>
+    <rdf:Description rdf:about="#CloudSystem"/>
+    <rdf:Description rdf:about="#ComputerSystem"/>
+    <rdf:Description rdf:about="#Controller"/>
+    <rdf:Description rdf:about="#EdgeDevice"/>
+    <rdf:Description rdf:about="#PersonalComputer"/>
+    <rdf:Description rdf:about="#Sensor"/>
+  </owl:members>
+</owl:AllDisjointClasses>
+
+
+</rdf:RDF>

@@ -1,0 +1,478 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/schieseck/ISO7489"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/schieseck/ISO7489">
+    <Prefix name="" IRI="http://www.semanticweb.org/schieseck/ISO7489/"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Prefix name="ISO7489" IRI="http://www.semanticweb.org/schieseck/ISO7489#"/>
+    <Declaration>
+        <Class IRI="#Application"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Bit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Com1"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Com2"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Com3"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Communication"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DHCP"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Data"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DataLink"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#DataUnit"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Ethernet"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#FTP"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Frame"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HTTP"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#HTTPS"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#IP"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Layer"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#MQTT"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Name"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Network"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Package"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Physical"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Presentation"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Segment"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Session"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#TCP"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Technology"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Transport"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#1000BASE-T"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasDataUnit"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasLayer"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#transmitsData"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasName"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#usesTechnology"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Application"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Bit"/>
+        <Class IRI="#DataUnit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Com1"/>
+        <Class IRI="#Communication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Com2"/>
+        <Class IRI="#Communication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Com3"/>
+        <Class IRI="#Communication"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DHCP"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Data"/>
+        <Class IRI="#DataUnit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#DataLink"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Ethernet"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#FTP"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Frame"/>
+        <Class IRI="#DataUnit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HTTP"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#HTTPS"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#IP"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#MQTT"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Network"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Package"/>
+        <Class IRI="#DataUnit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Physical"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Presentation"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Segment"/>
+        <Class IRI="#DataUnit"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Session"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#TCP"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Transport"/>
+        <Class IRI="#Layer"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#1000BASE-T"/>
+        <Class IRI="#Technology"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#Application"/>
+        <Class IRI="#DataLink"/>
+        <Class IRI="#Network"/>
+        <Class IRI="#Physical"/>
+        <Class IRI="#Presentation"/>
+        <Class IRI="#Session"/>
+        <Class IRI="#Transport"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Bit"/>
+        <Class IRI="#Data"/>
+        <Class IRI="#Frame"/>
+        <Class IRI="#Package"/>
+        <Class IRI="#Segment"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Com1"/>
+        <Class IRI="#Com2"/>
+        <Class IRI="#Com3"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#Communication"/>
+        <Class IRI="#DataUnit"/>
+        <Class IRI="#Layer"/>
+        <Class IRI="#Name"/>
+        <Class IRI="#Technology"/>
+    </DisjointClasses>
+    <DisjointClasses>
+        <Class IRI="#DHCP"/>
+        <Class IRI="#Ethernet"/>
+        <Class IRI="#FTP"/>
+        <Class IRI="#HTTP"/>
+        <Class IRI="#HTTPS"/>
+        <Class IRI="#IP"/>
+        <Class IRI="#MQTT"/>
+        <Class IRI="#TCP"/>
+        <Class IRI="#1000BASE-T"/>
+    </DisjointClasses>
+    <DifferentIndividuals/>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasDataUnit"/>
+        <Class IRI="#Layer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasLayer"/>
+        <Class IRI="#Communication"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasName"/>
+        <Class IRI="#Communication"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#usesTechnology"/>
+        <Class IRI="#Layer"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#transmitsData"/>
+        <Class IRI="#Communication"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#transmitsData"/>
+        <Class IRI="#DataUnit"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasDataUnit"/>
+        <Class IRI="#DataUnit"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasLayer"/>
+        <Class IRI="#Layer"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasName"/>
+        <Class IRI="#Name"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#usesTechnology"/>
+        <Class IRI="#Technology"/>
+    </ObjectPropertyRange>
+    <DisjointObjectProperties>
+        <ObjectProperty IRI="#hasDataUnit"/>
+        <ObjectProperty IRI="#hasLayer"/>
+        <ObjectProperty IRI="#hasName"/>
+        <ObjectProperty IRI="#transmitsData"/>
+        <ObjectProperty IRI="#usesTechnology"/>
+    </DisjointObjectProperties>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Application</IRI>
+        <Literal xml:lang="de">Der Application Layer stellt direkt der Anwendung Dienste wie Dateiübertragung oder Remote-Zugriff zur Verfügung und nutzt dafür die Dienste der unteren Schichten.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Bit</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Com1</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Com2</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Com3</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Communication</IRI>
+        <Literal xml:lang="de">Eine Communication ist eine Verbindung zwischen mindestens zwei Systemkomponenten, die den gerichteten Austausch von Daten beschreibt.
+
+**Quelle (Norm):** ISO/IEC 7498, Definition 4.2.10</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#DHCP</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Data</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#DataLink</IRI>
+        <Literal xml:lang="de">Der Data Link Layer bildet aus Bits Datenrahmen und regelt den Zugriff auf das Übertragungsmedium.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#DataUnit</IRI>
+        <Literal xml:lang="de">Eine DataUnit (DU) ist eine abgegrenzte, zusammenhängende Datenmenge, die von einer Schicht des OSI-Modells als Einheit verarbeitet oder übertragen wird.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Ethernet</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#FTP</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Frame</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#HTTP</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#HTTPS</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#IP</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Layer</IRI>
+        <Literal xml:lang="de">Ein Layer ist eine abgegrenzte Funktionsgruppe, die auf einem bestimmten Abstraktionsniveau definierte Kommunikationsaufgaben erfüllt.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#MQTT</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Name</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Network</IRI>
+        <Literal xml:lang="de">Der Network Layer organisiert die paketweise Weiterleitung von Daten über mehrere Netze hinweg.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Package</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Physical</IRI>
+        <Literal xml:lang="de">Der Physical Layer überträgt rohe Bits als elektrische, optische oder Funksignale über ein physisches Medium.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Presentation</IRI>
+        <Literal xml:lang="de">Der Presentation Layer wandelt Daten in ein gemeinsames Format und übernimmt Codierung, Kompression und ggf. Verschlüsselung.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Segment</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Session</IRI>
+        <Literal xml:lang="de">Der Session Layer verwaltet Sitzungen zwischen Anwendungen (Aufbau, Steuerung, Synchronisation).
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#TCP</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Technology</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#transmitsData</IRI>
+        <Literal xml:lang="de">Die Relation transmitsData verbindet eine Communication mit einer DataUnit und beschreibt, welche Daten über diese Kommunikationsverbindung übertragen werden.
+
+**Quelle:** Dissertation Schieseck (AIAS-Erweiterung)</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#Transport</IRI>
+        <Literal xml:lang="de">Der Transport Layer stellt Ende-zu-Ende-Verbindungen zwischen Kommunikationspartnern bereit und segmentiert Datenströme.
+
+**Quelle (Norm):** ISO/IEC 7498</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>#1000BASE-T</IRI>
+        <Literal xml:lang="de">tbd.</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

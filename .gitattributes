@@ -1,0 +1,12 @@
+# Zeilenenden im Repository normalisieren
+* text=auto eol=lf
+
+# Binaerdateien unveraendert lassen
+*.png binary
+*.PNG binary
+*.gif binary
+*.svg text eol=lf
+
+# Minifizierte Bibliotheken von der Sprachstatistik ausnehmen
+backend/lib/** linguist-vendored
+frontend/package-lock.json linguist-generated

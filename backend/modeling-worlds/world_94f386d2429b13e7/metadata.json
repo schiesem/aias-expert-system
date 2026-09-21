@@ -1,0 +1,20 @@
+{
+  "world_id": "94f386d2429b13e7",
+  "name": "Fallbeispiel 2 EKI_Ist-Modell",
+  "description": "Phase 2 model for Fallbeispiel 2 EKI",
+  "created_at": "2026-02-26T12:45:06.086087",
+  "last_modified": "2026-04-12T14:39:29.966865",
+  "node_count": 7,
+  "edge_count": 6,
+  "annotation_count": 3,
+  "project_name": "Fallbeispiel 2 EKI",
+  "dmme_phase": 2,
+  "phase_label": "Ist-Modell",
+  "parent_world_id": null,
+  "child_world_ids": [
+    "773ba1079263d1ee",
+    "c24dbfebddad12cd"
+  ],
+  "phase_created_at": "2026-02-26T12:45:06.086087",
+  "is_phase_model": true
+}

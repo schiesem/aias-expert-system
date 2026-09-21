@@ -1,0 +1,78 @@
+/**
+ * RelationLevelSection.css
+ *
+ * Styling for level sections in the flat annotation structure.
+ */
+
+.level-section {
+  background: white;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-md);
+  padding: var(--ui-space-md);
+  margin-bottom: var(--ui-space-lg);
+  transition: all var(--ui-transition);
+}
+
+.level-section:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Level Header */
+.level-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--ui-space-md);
+  padding-bottom: var(--ui-space-sm);
+  border-bottom: 2px solid var(--ui-gray-200);
+}
+
+.level-section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ui-gray-900);
+  margin: 0;
+}
+
+.level-section-count {
+  font-size: 0.9rem;
+  color: var(--ui-gray-600);
+  background: var(--ui-gray-100);
+  padding: 3px 10px;
+  border-radius: var(--ui-radius-sm);
+  font-weight: 500;
+}
+
+/* Level Content */
+.level-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-md);
+}
+
+.level-section-empty {
+  font-size: 0.9rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  text-align: center;
+  padding: var(--ui-space-md);
+  background: var(--ui-gray-50);
+  border-radius: var(--ui-radius-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .level-section {
+    padding: var(--ui-space-sm);
+  }
+
+  .level-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ui-space-xs);
+  }
+
+  .level-section-count {
+    align-self: flex-start;
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "world_id": "000000000000",
+  "name": "Default World",
+  "description": "Permanent default workspace for testing and scratch work",
+  "created_at": "2026-03-08T11:02:27.113253",
+  "last_modified": "2026-03-08T11:38:03.968348",
+  "node_count": 0,
+  "edge_count": 0,
+  "annotation_count": 2,
+  "project_name": null,
+  "dmme_phase": null,
+  "phase_label": null,
+  "parent_world_id": null,
+  "child_world_ids": [],
+  "phase_created_at": null,
+  "is_phase_model": false,
+  "is_default": true
+}

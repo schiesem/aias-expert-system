@@ -1,0 +1,459 @@
+# SHACL Note Rules - Advisory Warnings for AI System Design
+# Based on human_readable_notes.txt
+# These rules generate informational warnings/hints, not hard violations
+
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix AIAS:     <http://www.semanticweb.org/schieseck/AIAS#> .
+@prefix ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#> .
+@prefix ISO7489:  <http://www.semanticweb.org/schieseck/ISO7489#> .
+@prefix VDI3682:  <http://www.semanticweb.org/schieseck/VDI3682#> .
+
+# ==============================================================================
+# RULES 1-3: Inference on CloudSystem
+# ==============================================================================
+
+# Rule 1: Inference on CloudSystem - Latency
+AIAS:InferenceOnCloudSystemLatencyShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 1: Inference on CloudSystem - Latency" ;
+    sh:targetClass ISO22989:Inference ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Bei der Inferenz auf einer externen Cloud können hohe Latenzzeiten auftreten." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:CloudSystem .
+            }
+        """ ;
+    ] .
+
+# Rule 2: Inference on CloudSystem - Reliability
+AIAS:InferenceOnCloudSystemReliabilityShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 2: Inference on CloudSystem - Reliability" ;
+    sh:targetClass ISO22989:Inference ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Bei der Inferenz auf einer externen Cloud ist keine Ausfallsicherheit gegeben. Sobald die Verbindung zur Cloud oder der Anlage abbricht, kann die Inferenz nicht ausgeführt werden." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:CloudSystem .
+            }
+        """ ;
+    ] .
+
+# Rule 3: Inference on CloudSystem - Costs
+AIAS:InferenceOnCloudSystemCostsShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 3: Inference on CloudSystem - Costs" ;
+    sh:targetClass ISO22989:Inference ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Möglicherweise hohe Kosten durch kontinuierliche und unsachgemäße Nutzung der Cloud. Bitte Anwenderzugang prüfen." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:CloudSystem .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# RULES 4-5: Inference on EdgeDevice
+# ==============================================================================
+
+# Rule 4: Inference on EdgeDevice - Computing Power
+AIAS:InferenceOnEdgeDevicePowerShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 4: Inference on EdgeDevice - Computing Power" ;
+    sh:targetClass ISO22989:Inference ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Die verfügbare Rechenleistung auf dem Edge-Gerät ist eventuell nicht ausreichend um das Modell auszuführen. Bitte die Rechenleistung prüfen." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:EdgeDevice .
+            }
+        """ ;
+    ] .
+
+# Rule 5: Inference on EdgeDevice - Computing Duration
+AIAS:InferenceOnEdgeDeviceDurationShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 5: Inference on EdgeDevice - Computing Duration" ;
+    sh:targetClass ISO22989:Inference ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Die verfügbare Rechenleistung auf dem Edge-Gerät ist eventuell nicht ausreichend um das Modell in der geforderten Zeit auszuführen. Bitte die Rechendauer prüfen." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:EdgeDevice .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# RULE 6: Training on EdgeDevice
+# ==============================================================================
+
+AIAS:TrainingOnEdgeDeviceShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 6: Training on EdgeDevice" ;
+    sh:targetClass ISO22989:Training ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Die Rechenleistung auf dem Gerät ist eventuell nicht ausreichend für das Training." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:EdgeDevice .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# RULES 7-8: Storage
+# ==============================================================================
+
+# Rule 7: Storage on EdgeDevice
+AIAS:StorageOnEdgeDeviceShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 7: Storage on EdgeDevice" ;
+    sh:targetClass ISO22989:Storage ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Der Speicherplatz auf dem Gerät ist vermutlich gering. Bitte Speichermöglichkeiten prüfen." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:EdgeDevice .
+            }
+        """ ;
+    ] .
+
+# Rule 8: Storage on CloudSystem
+AIAS:StorageOnCloudSystemShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 8: Storage on CloudSystem" ;
+    sh:targetClass ISO22989:Storage ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Zusätzlicher Speicher in der Cloud kann teuer werden. Bitte Konditionen über den Anbieter prüfen." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:CloudSystem .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# RULES 9-11: Acquisition on Sensor/Actuator/Controller
+# ==============================================================================
+
+# Rule 9: Acquisition on Sensor
+AIAS:AcquisitionOnSensorShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 9: Acquisition on Sensor" ;
+    sh:targetClass ISO22989:Acquisition ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Ein Tausch des Sensors oder eine Rekalibrierung hat einen Einfluss auf die KI-Anwendung. Bitte den Anlagenbetreibern vermitteln." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:Sensor .
+            }
+        """ ;
+    ] .
+
+# Rule 10: Acquisition on Actuator
+AIAS:AcquisitionOnActuatorShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 10: Acquisition on Actuator" ;
+    sh:targetClass ISO22989:Acquisition ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Ein Tausch, eine Reparatur des Actuators oder eine Rekalibrierung hat einen Einfluss auf die KI-Anwendung. Bitte dem Anlagenbetreiber informieren." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:Actuator .
+            }
+        """ ;
+    ] .
+
+# Rule 11: Acquisition on Controller
+AIAS:AcquisitionOnControllerShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 11: Acquisition on Controller" ;
+    sh:targetClass ISO22989:Acquisition ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Ein Update des Controllers hat einen Einfluss auf die KI-Anwendung. Bitte dem Anlagenbetreiber informieren." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:Controller .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# RULES 12-13: Automate on Controller/EdgeDevice
+# ==============================================================================
+
+# Rule 12: Automate on Controller
+AIAS:AutomateOnControllerShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 12: Automate on Controller" ;
+    sh:targetClass ISO22989:Automate ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Jedes Update und jede Aktualisierung des Steuerungscodes kann einen Einfluss auf die KI-Anwendung haben. Bitte dem Anlagenbetreiber informieren." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:Controller .
+            }
+        """ ;
+    ] .
+
+# Rule 13: Automate on EdgeDevice
+AIAS:AutomateOnEdgeDeviceShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 13: Automate on EdgeDevice" ;
+    sh:targetClass ISO22989:Automate ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Jede Anpassung des Edge-Devices kann einen Einfluss auf die KI-Anwendung haben. Bitte dem Anlagenbetreiber informieren." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX ISO22989: <http://www.semanticweb.org/schieseck/ISO22989#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?component
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?component AIAS:isAssignedTo ?assignment .
+                ?component a AIAS:EdgeDevice .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# RULES 14-18: Existence Checks (Advisory Warnings)
+# ==============================================================================
+
+# Rule 14: Automate exists - Component adjustment warning
+AIAS:AutomateExistsShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 14: Automate exists - Component adjustment warning" ;
+    sh:targetClass ISO22989:Automate ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue ISO22989:Automate ;
+        sh:message "Wird die der Automate Funktion zugewiesene Komponente angepasst, kann das einen Einfluss auf die KI-Anwendung haben." ;
+    ] .
+
+# Rule 15: Storage exists - Lifetime warning
+AIAS:StorageExistsShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 15: Storage exists - Lifetime warning" ;
+    sh:targetClass ISO22989:Storage ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue ISO22989:Storage ;
+        sh:message "Prüfen, ob der zur Verfügung stehende Speicher für die geplante Lebenszeit der Anwendung ausreichend ist." ;
+    ] .
+
+# Rule 16: Validation exists - Data separation warning
+AIAS:ValidationExistsShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 16: Validation exists - Data separation warning" ;
+    sh:targetClass ISO22989:Validation ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue ISO22989:Validation ;
+        sh:message "Bitte darauf achten, dass die Validierungsdaten und die Evaluationsdaten voneinander getrennt sind." ;
+    ] .
+
+# Rule 17: Evaluation exists - Operation frequency warning
+AIAS:EvaluationExistsShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 17: Evaluation exists - Operation frequency warning" ;
+    sh:targetClass ISO22989:Evaluation ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue ISO22989:Evaluation ;
+        sh:message "Bitte darauf achten, die Evaluation im Anlagenbetrieb in der richtigen Frequenz durchzuführen oder ein Konzept im Lebenszyklus der KI-Anwendung erforderlich ist." ;
+    ] .
+
+# Rule 18: ProcessOperator exists - Notify process owners
+AIAS:ProcessOperatorExistsShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 18: ProcessOperator exists - Notify process owners" ;
+    sh:targetClass VDI3682:ProcessOperator ;
+    sh:property [
+        sh:path rdf:type ;
+        sh:hasValue VDI3682:ProcessOperator ;
+        sh:message "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass dieser Prozessschritt des Prozessoperators Teil einer KI-Anwendung wird." ;
+    ] .
+
+# ==============================================================================
+# RULES 29-31: Component on ProcessOperator
+# ==============================================================================
+
+# Rule 29: Sensor on ProcessOperator
+AIAS:SensorOnProcessOperatorShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 29: Sensor on ProcessOperator" ;
+    sh:targetClass AIAS:Sensor ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass der Sensor des Prozessoperators Teil einer KI-Anwendung wird." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?processOp
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?processOp AIAS:isAssignedTo ?assignment .
+                ?processOp a VDI3682:ProcessOperator .
+            }
+        """ ;
+    ] .
+
+# Rule 30: Actuator on ProcessOperator
+AIAS:ActuatorOnProcessOperatorShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 30: Actuator on ProcessOperator" ;
+    sh:targetClass AIAS:Actuator ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass der Actuator des Prozessoperators Teil einer KI-Anwendung wird." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?processOp
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?processOp AIAS:isAssignedTo ?assignment .
+                ?processOp a VDI3682:ProcessOperator .
+            }
+        """ ;
+    ] .
+
+# Rule 31: Controller on ProcessOperator
+AIAS:ControllerOnProcessOperatorShape
+    a sh:NodeShape ;
+    rdfs:label "Rule 31: Controller on ProcessOperator" ;
+    sh:targetClass AIAS:Controller ;
+    sh:sparql [
+        a sh:SPARQLConstraint ;
+        sh:message "Bitte die Prozessverantwortlichen am besten schriftlich informieren, dass der Controller des Prozessoperators Teil einer KI-Anwendung wird." ;
+        sh:select """
+            PREFIX AIAS: <http://www.semanticweb.org/schieseck/AIAS#>
+            PREFIX VDI3682: <http://www.semanticweb.org/schieseck/VDI3682#>
+            SELECT $this ?assignment ?processOp
+            WHERE {
+                $this AIAS:isAssignedTo ?assignment .
+                ?assignment a VDI3682:Assignment .
+                ?processOp AIAS:isAssignedTo ?assignment .
+                ?processOp a VDI3682:ProcessOperator .
+            }
+        """ ;
+    ] .
+
+# ==============================================================================
+# NOTES:
+# ==============================================================================
+# - Rules 14-18: Existence checks - These trigger for EVERY instance of the class
+#   This is intentional as they are advisory warnings
+# - Rules 19-27: Absence checks - NOT IMPLEMENTED YET
+#   SHACL cannot easily check for class non-existence across the entire ontology
+#   These would require a different approach (e.g., global ontology validation)
+# - Rule 28: Complex comparison - NOT IMPLEMENTED YET
+#   Requires comparing two different assignments, which is complex in SHACL

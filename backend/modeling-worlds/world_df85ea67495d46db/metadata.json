@@ -1,0 +1,19 @@
+{
+  "world_id": "df85ea67495d46db",
+  "name": "K(ISS)-Projekt_Konzept-Modell",
+  "description": "Phase 3 model derived from K(ISS)-Projekt_Ist-Modell",
+  "created_at": "2026-02-06T10:13:17.907525",
+  "last_modified": "2026-02-06T10:32:41.016314",
+  "node_count": 66,
+  "edge_count": 73,
+  "annotation_count": 1,
+  "project_name": "K(ISS)-Projekt",
+  "dmme_phase": 3,
+  "phase_label": "Konzept-Modell",
+  "parent_world_id": "c549930551a8ca2f",
+  "child_world_ids": [
+    "e13a90b858a11bb2"
+  ],
+  "phase_created_at": "2026-02-06T10:13:17.907525",
+  "is_phase_model": true
+}

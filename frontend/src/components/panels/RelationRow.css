@@ -1,0 +1,277 @@
+/**
+ * RelationRow.css
+ *
+ * Styles for the relation row component.
+ */
+
+.relation-row {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 12px;
+  transition: all 0.2s;
+}
+
+.relation-row:hover {
+  border-color: #2196F3;
+  box-shadow: 0 2px 6px rgba(33, 150, 243, 0.1);
+}
+
+.relation-row.required {
+  border-left: 3px solid #f44336;
+}
+
+.relation-row.optional {
+  border-left: 3px solid #4CAF50;
+}
+
+/* Header */
+.relation-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.relation-row-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.relation-row-property {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.relation-property-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.relation-required-badge {
+  color: #f44336;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.relation-row-target {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.relation-target-class {
+  font-family: 'Courier New', monospace;
+  background: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #2196F3;
+  font-weight: 500;
+}
+
+.relation-row-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.relation-cardinality {
+  font-size: 0.85rem;
+  color: #999;
+  font-family: 'Courier New', monospace;
+  padding: 4px 8px;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+.relation-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.relation-btn:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #999;
+}
+
+.relation-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.relation-btn-toggle {
+  color: #666;
+}
+
+.relation-btn-add {
+  color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.relation-btn-add:hover:not(:disabled) {
+  background: #e8f5e9;
+}
+
+/* Description */
+.relation-row-description {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+/* Existing Instances */
+.relation-instances {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.relation-instances-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.relation-instances-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.relation-instance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.relation-instance-item:hover {
+  border-color: #2196F3;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.instance-item-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.instance-item-name {
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.instance-item-parent {
+  font-size: 0.75rem;
+  color: #2196F3;
+  background: #e3f2fd;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-style: italic;
+}
+
+.instance-item-badge {
+  font-size: 0.9rem;
+}
+
+.instance-item-properties {
+  font-size: 0.75rem;
+  color: #666;
+  background: #f5f5f5;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.instance-item-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.instance-item-delete:hover:not(:disabled) {
+  background: #ffebee;
+}
+
+.instance-item-delete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form Container */
+.relation-form-container {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    padding: 12px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .relation-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .relation-row-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .relation-row-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .instance-item-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

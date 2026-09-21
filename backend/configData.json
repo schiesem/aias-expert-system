@@ -1,0 +1,24 @@
+{
+    "ips": {
+        "frontend": "127.0.0.1",
+        "backend": "127.0.0.1"
+    },
+    "ports": {
+        "frontend": 5173,
+        "backend": 5000
+    },
+    "routes": {
+        "MAIN": "/",
+        "STORE": "/store/",
+        "RULE_BASE": "/ruleEval/",
+        "CASE_BASE": "/caseEval/",
+        "CONFIG_DATA": "/configData/",
+        "ONTOLOGY_CONFIG" : "/ontologyConfig/",
+        "GRAPH" : "/graph/",
+        "CASES": "/cases",
+        "REASONING": "/reasoning/",
+        "MODEL_CLASS_TYPES": "/api/model/class-types",
+        "VALIDATION": "/api/validation/",
+        "CASE_FILTER": "/api/case-filter/"
+    }
+}

@@ -1,0 +1,472 @@
+/**
+ * RelationRowFlat.css
+ *
+ * Styling for flat relation rows with parent/target dropdowns.
+ */
+
+.relation-row-flat {
+  background: white;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-md);
+  padding: var(--ui-space-md);
+  margin-bottom: var(--ui-space-md);
+  transition: all var(--ui-transition);
+}
+
+.relation-row-flat:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Required vs Optional Visual Indicators */
+.relation-row-flat.required {
+  border-left: 4px solid var(--ui-primary);
+}
+
+.relation-row-flat.optional {
+  border-left: 4px solid var(--ui-gray-300);
+}
+
+/* Relation Header */
+.relation-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--ui-space-sm);
+  gap: var(--ui-space-md);
+}
+
+.relation-row-info {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-xs);
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+
+.relation-property {
+  font-weight: 600;
+  color: var(--ui-gray-900);
+}
+
+.relation-required-badge {
+  color: var(--ui-primary);
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: help;
+}
+
+.relation-arrow {
+  color: var(--ui-gray-500);
+  font-weight: 500;
+}
+
+.relation-target-class {
+  font-style: italic;
+  color: var(--ui-gray-700);
+  font-weight: 500;
+}
+
+/* Element class (the current element being annotated) */
+.relation-element-class {
+  font-weight: 600;
+  color: var(--ui-primary);
+}
+
+/* Action Buttons Section */
+.relation-row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  flex-shrink: 0;
+}
+
+.relation-cardinality {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-weight: 500;
+  padding: 3px 8px;
+  background: var(--ui-gray-100);
+  border-radius: var(--ui-radius-sm);
+  cursor: help;
+}
+
+.relation-toggle-btn {
+  padding: var(--ui-space-xs) var(--ui-space-sm);
+  border: 1px solid var(--ui-gray-300);
+  background: white;
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--ui-transition);
+  white-space: nowrap;
+}
+
+.relation-toggle-btn:hover {
+  background: var(--ui-gray-100);
+  border-color: var(--ui-gray-400);
+  transform: translateY(-1px);
+}
+
+.relation-toggle-btn:active {
+  transform: translateY(0);
+}
+
+/* Relation Description */
+.relation-description {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  margin-bottom: var(--ui-space-sm);
+  line-height: 1.4;
+}
+
+/* Parent Selector (Level 2+) */
+.parent-selector {
+  margin: var(--ui-space-sm) 0;
+  padding: var(--ui-space-sm);
+  background: #e3f2fd; /* Light blue for parent selection */
+  border: 2px solid #2196f3;
+  border-radius: var(--ui-radius-sm);
+}
+
+.parent-selector label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ui-gray-800);
+  margin-bottom: var(--ui-space-xs);
+}
+
+.parent-selector-dropdown {
+  width: 100%;
+  padding: var(--ui-space-xs) var(--ui-space-sm);
+  border: 1px solid var(--ui-gray-300);
+  border-radius: var(--ui-radius-sm);
+  font-size: 0.9rem;
+  background: white;
+  cursor: pointer;
+  transition: all var(--ui-transition);
+}
+
+.parent-selector-dropdown:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+}
+
+.parent-selector-empty {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  margin-top: var(--ui-space-xs);
+}
+
+/* Action Buttons */
+.relation-row-buttons {
+  display: flex;
+  gap: var(--ui-space-sm);
+  margin: var(--ui-space-sm) 0;
+}
+
+.relation-add-btn,
+.relation-use-btn {
+  padding: var(--ui-space-xs) var(--ui-space-sm);
+  border: 1px solid var(--ui-gray-300);
+  background: white;
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--ui-transition);
+  white-space: nowrap;
+}
+
+.relation-add-btn:hover,
+.relation-use-btn:hover {
+  background: var(--ui-gray-100);
+  border-color: var(--ui-gray-400);
+  transform: translateY(-1px);
+}
+
+.relation-add-btn:active,
+.relation-use-btn:active {
+  transform: translateY(0);
+}
+
+.relation-add-btn {
+  color: var(--ui-primary);
+  border-color: var(--ui-primary);
+}
+
+.relation-add-btn:hover {
+  background: var(--ui-primary);
+  color: white;
+}
+
+.relation-add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--ui-gray-200);
+  color: var(--ui-gray-500);
+  border-color: var(--ui-gray-300);
+}
+
+.relation-add-btn:disabled:hover {
+  background: var(--ui-gray-200);
+  color: var(--ui-gray-500);
+  transform: none;
+}
+
+.relation-use-btn {
+  color: #2563eb;
+  border-color: #2563eb;
+}
+
+.relation-use-btn:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.relation-use-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Message */
+.relation-row-message {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  text-align: center;
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border-radius: var(--ui-radius-sm);
+  margin: var(--ui-space-sm) 0;
+}
+
+/* Use Existing Dropdown */
+.relation-use-dropdown {
+  margin: var(--ui-space-sm) 0;
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-loading,
+.dropdown-empty {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  text-align: center;
+  padding: var(--ui-space-sm);
+}
+
+.dropdown-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ui-gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--ui-space-xs);
+  padding-bottom: var(--ui-space-xs);
+  border-bottom: 1px solid var(--ui-gray-200);
+}
+
+.dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-xs);
+}
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ui-space-sm);
+  background: white;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--ui-transition);
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  transform: translateX(4px);
+}
+
+.dropdown-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdown-item-name {
+  font-weight: 500;
+}
+
+.dropdown-item-id {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-family: 'Courier New', monospace;
+}
+
+/* Creation Form */
+.relation-form {
+  margin-top: var(--ui-space-sm);
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  animation: slideDown 0.2s ease;
+}
+
+/* Existing Instances */
+.relation-instances {
+  margin-top: var(--ui-space-sm);
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border-radius: var(--ui-radius-sm);
+}
+
+.instances-header {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ui-gray-700);
+  margin-bottom: var(--ui-space-xs);
+}
+
+.instance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ui-space-sm);
+  background: white;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  margin-bottom: var(--ui-space-xs);
+  transition: all var(--ui-transition);
+}
+
+.instance-item:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.instance-item-info {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-xs);
+  flex-wrap: wrap;
+}
+
+.instance-name {
+  font-weight: 500;
+  color: var(--ui-gray-900);
+}
+
+.instance-class {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+}
+
+.instance-props-badge {
+  font-size: 0.75rem;
+  color: var(--ui-gray-600);
+  background: var(--ui-gray-100);
+  padding: 2px 6px;
+  border-radius: var(--ui-radius-sm);
+  cursor: help;
+}
+
+.instance-delete-btn {
+  padding: var(--ui-space-xs);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all var(--ui-transition);
+  flex-shrink: 0;
+}
+
+.instance-delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.instance-delete-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .relation-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ui-space-sm);
+  }
+
+  .relation-row-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .relation-row-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .relation-add-btn,
+  .relation-use-btn {
+    width: 100%;
+  }
+
+  .instance-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ui-space-xs);
+  }
+
+  .instance-delete-btn {
+    align-self: flex-end;
+  }
+}
+
+/* Custom Scrollbar for Dropdown */
+.relation-use-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.relation-use-dropdown::-webkit-scrollbar-track {
+  background: var(--ui-gray-100);
+  border-radius: var(--ui-radius-sm);
+}
+
+.relation-use-dropdown::-webkit-scrollbar-thumb {
+  background: var(--ui-gray-300);
+  border-radius: var(--ui-radius-sm);
+}
+
+.relation-use-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-gray-600);
+}

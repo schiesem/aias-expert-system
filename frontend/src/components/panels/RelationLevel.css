@@ -1,0 +1,147 @@
+/**
+ * RelationLevel.css
+ *
+ * Styles for the relation level component.
+ */
+
+.relation-level {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+.relation-level:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.relation-level-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: linear-gradient(to right, #f8f9fa, #ffffff);
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background 0.2s;
+}
+
+.relation-level-header:hover {
+  background: linear-gradient(to right, #f0f2f5, #f8f9fa);
+}
+
+.relation-level.expanded .relation-level-header {
+  background: linear-gradient(to right, #e3f2fd, #f8f9fa);
+}
+
+.relation-level-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.relation-level-icon {
+  font-size: 0.8rem;
+  color: #666;
+  transition: transform 0.2s;
+  display: inline-block;
+  width: 12px;
+}
+
+.relation-level.expanded .relation-level-icon {
+  transform: rotate(0deg);
+}
+
+.relation-level.collapsed .relation-level-icon {
+  transform: rotate(-90deg);
+}
+
+.relation-level-label {
+  font-size: 1rem;
+  color: #2196F3;
+}
+
+.relation-level-count {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: 400;
+}
+
+.relation-level-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.relation-level-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.relation-level-badge.required {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.relation-level-badge.optional {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Content */
+.relation-level-content {
+  padding: 12px;
+  background: #fafafa;
+}
+
+.relation-level-empty {
+  padding: 20px;
+  text-align: center;
+  color: #999;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.relation-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Animation */
+.relation-level.expanded .relation-level-content {
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .relation-level-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .relation-level-info {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

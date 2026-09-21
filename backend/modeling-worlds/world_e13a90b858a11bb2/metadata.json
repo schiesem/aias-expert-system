@@ -1,0 +1,19 @@
+{
+  "world_id": "e13a90b858a11bb2",
+  "name": "K(ISS)-Projekt_Implementation-Modell",
+  "description": "Phase 8 model derived from K(ISS)-Projekt_Konzept-Modell",
+  "created_at": "2026-02-06T10:32:40.850264",
+  "last_modified": "2026-02-06T10:46:57.086550",
+  "node_count": 70,
+  "edge_count": 79,
+  "annotation_count": 1,
+  "project_name": "K(ISS)-Projekt",
+  "dmme_phase": 8,
+  "phase_label": "Implementation-Modell",
+  "parent_world_id": "df85ea67495d46db",
+  "child_world_ids": [
+    "4001d08ba243d299"
+  ],
+  "phase_created_at": "2026-02-06T10:32:40.850264",
+  "is_phase_model": true
+}

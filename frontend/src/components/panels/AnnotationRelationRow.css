@@ -1,0 +1,394 @@
+/**
+ * AnnotationRelationRow.css
+ *
+ * Styling for relation rows with Add/Use buttons and nested instance cards
+ */
+
+.annotation-relation-row {
+  background: white;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-md);
+  padding: var(--ui-space-md);
+  margin-bottom: var(--ui-space-md);
+  transition: all var(--ui-transition);
+}
+
+.annotation-relation-row:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Required vs Optional Visual Indicators */
+.annotation-relation-row.required {
+  border-left: 4px solid var(--ui-primary);
+}
+
+.annotation-relation-row.optional {
+  border-left: 4px solid var(--ui-gray-300);
+}
+
+/* Relation Header */
+.relation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--ui-space-sm);
+  gap: var(--ui-space-md);
+}
+
+.relation-info {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-xs);
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+
+.relation-property {
+  font-weight: 600;
+  color: var(--ui-gray-900);
+}
+
+.relation-required-badge {
+  color: var(--ui-primary);
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: help;
+}
+
+.relation-arrow {
+  color: var(--ui-gray-500);
+  font-weight: 500;
+}
+
+.relation-target-class {
+  font-style: italic;
+  color: var(--ui-gray-700);
+  font-weight: 500;
+}
+
+/* Element class (the starting point - e.g., "Inference" in "Inference → creates → Prediction") */
+.relation-element-class {
+  font-weight: 600;
+  color: var(--ui-primary);
+}
+
+/* Action Buttons Section */
+.relation-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  flex-shrink: 0;
+}
+
+.relation-cardinality {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-weight: 500;
+  padding: 3px 8px;
+  background: var(--ui-gray-100);
+  border-radius: var(--ui-radius-sm);
+  cursor: help;
+}
+
+.relation-toggle-btn,
+.relation-add-btn,
+.relation-use-btn {
+  padding: var(--ui-space-xs) var(--ui-space-sm);
+  border: 1px solid var(--ui-gray-300);
+  background: white;
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--ui-transition);
+  white-space: nowrap;
+}
+
+.relation-toggle-btn:hover,
+.relation-add-btn:hover,
+.relation-use-btn:hover {
+  background: var(--ui-gray-100);
+  border-color: var(--ui-gray-400);
+  transform: translateY(-1px);
+}
+
+.relation-toggle-btn:active,
+.relation-add-btn:active,
+.relation-use-btn:active {
+  transform: translateY(0);
+}
+
+.relation-add-btn {
+  color: var(--ui-primary);
+  border-color: var(--ui-primary);
+}
+
+.relation-add-btn:hover {
+  background: var(--ui-primary);
+  color: white;
+}
+
+.relation-add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--ui-gray-200);
+  color: var(--ui-gray-500);
+  border-color: var(--ui-gray-300);
+}
+
+.relation-add-btn:disabled:hover {
+  background: var(--ui-gray-200);
+  color: var(--ui-gray-500);
+  transform: none;
+}
+
+.relation-use-btn {
+  color: #2563eb; /* Blue color for "Use" */
+  border-color: #2563eb;
+}
+
+.relation-use-btn:hover {
+  background: #2563eb;
+  color: white;
+}
+
+.relation-use-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Relation Description */
+.relation-description {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  margin-bottom: var(--ui-space-sm);
+  line-height: 1.4;
+}
+
+/* Parent Selector Dropdown (Level 2+) */
+.relation-parent-selector {
+  margin: var(--ui-space-sm) 0;
+  padding: var(--ui-space-sm);
+  background: #fff3e0; /* Light orange background to distinguish from "Use" */
+  border: 2px solid #ff9800;
+  border-radius: var(--ui-radius-sm);
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+}
+
+/* Use Existing Dropdown */
+.relation-use-dropdown {
+  margin: var(--ui-space-sm) 0;
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  max-height: 250px;
+  overflow-y: auto;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-loading,
+.dropdown-empty {
+  font-size: 0.85rem;
+  color: var(--ui-gray-600);
+  font-style: italic;
+  text-align: center;
+  padding: var(--ui-space-sm);
+}
+
+.dropdown-header {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ui-gray-700);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--ui-space-xs);
+  padding-bottom: var(--ui-space-xs);
+  border-bottom: 1px solid var(--ui-gray-200);
+}
+
+.dropdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-xs);
+}
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--ui-space-sm);
+  background: white;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--ui-transition);
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover {
+  background: #2563eb;
+  color: white;
+  border-color: #2563eb;
+  transform: translateX(4px);
+}
+
+.dropdown-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.dropdown-item-name {
+  font-weight: 500;
+}
+
+.dropdown-item-id {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-family: 'Courier New', monospace;
+}
+
+/* Existing Instances Section */
+.relation-instances {
+  margin-top: var(--ui-space-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-xs);
+}
+
+/* Creation Form Section */
+.relation-form {
+  margin-top: var(--ui-space-sm);
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-sm);
+  animation: slideDown 0.2s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .relation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--ui-space-sm);
+  }
+
+  .relation-actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .relation-toggle-btn,
+  .relation-add-btn,
+  .relation-use-btn {
+    padding: var(--ui-space-xs);
+    font-size: 0.8rem;
+  }
+
+  .relation-use-dropdown {
+    max-height: 200px;
+  }
+}
+
+/* Nested Relations Preview */
+.relation-nested-preview {
+  margin-top: var(--ui-space-md);
+  padding: var(--ui-space-sm);
+  background: var(--ui-gray-50);
+  border-left: 3px solid var(--ui-primary);
+  border-radius: var(--ui-radius-sm);
+}
+
+.nested-preview-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  margin-bottom: var(--ui-space-sm);
+  padding: var(--ui-space-xs);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--ui-transition);
+}
+
+.nested-preview-header:hover {
+  background: var(--ui-gray-100);
+  border-radius: var(--ui-radius-sm);
+}
+
+.nested-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  color: var(--ui-primary);
+  transition: all var(--ui-transition);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nested-toggle-btn:hover {
+  transform: scale(1.2);
+}
+
+.nested-level-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ui-gray-800);
+  letter-spacing: 0.3px;
+}
+
+.nested-relation-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-sm);
+  padding-left: var(--ui-space-md);
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 2000px;
+  }
+}
+
+/* Custom Scrollbar for Dropdown */
+.relation-use-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.relation-use-dropdown::-webkit-scrollbar-track {
+  background: var(--ui-gray-100);
+  border-radius: var(--ui-radius-sm);
+}
+
+.relation-use-dropdown::-webkit-scrollbar-thumb {
+  background: var(--ui-gray-300);
+  border-radius: var(--ui-radius-sm);
+}
+
+.relation-use-dropdown::-webkit-scrollbar-thumb:hover {
+  background: var(--ui-gray-600);
+}

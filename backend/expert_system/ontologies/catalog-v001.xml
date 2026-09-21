@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.semanticweb.org/schieseck/VDI3682" uri="odps/VDI3682.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.semanticweb.org/schieseck/ISO7489" uri="odps/ISO7489.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.semanticweb.org/schieseck/ISO22989" uri="odps/ISO22989.owl"/>
+    <uri id="User Entered Import Resolution" name="file:///odps/ISO22989.owl" uri="odps/ISO22989.owl"/>
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1768473248820" name="duplicate:http://www.semanticweb.org/schieseck/AIAS" uri="AIAS-instance.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1768473248820" name="duplicate:http://www.semanticweb.org/schieseck/AIAS" uri="AIAS.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1768473248820" name="http://www.semanticweb.org/schieseck/ISO7489" uri="odps/ISO7489.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1768473248820" name="http://www.semanticweb.org/schieseck/VDI3682" uri="odps/VDI3682.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1768473248820" name="http://www.semanticweb.org/schieseck/ontologies/2023/7/untitled-ontology-13" uri="odps/ISO22989.owl"/>
+    </group>
+</catalog>

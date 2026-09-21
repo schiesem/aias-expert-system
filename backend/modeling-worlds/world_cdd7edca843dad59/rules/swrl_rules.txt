@@ -1,0 +1,3 @@
+AIAS:hasCommunication(?a, ?c), AIAS:hasCommunication(?b, ?c), ISO7489:Communication(?c) -> AIAS:communicatesWith(?a, ?b)"
+ISO22989:Inference(?inf), AIAS:isAssignedTo(?inf, ?asgn), AIAS:CloudSystem(?cloud), AIAS:isAssignedTo(?cloud, ?asgn), ISO22989:SystemDesign(?design), ISO22989:AISystem(?system), ISO22989:hasDesign(?system, ?design) -> ISO22989:Cloud(?design)"
+ISO22989:Inference(?inf), AIAS:isAssignedTo(?inf, ?asgn), AIAS:EdgeDevice(?edge), AIAS:isAssignedTo(?edge, ?asgn), ISO22989:SystemDesign(?design), ISO22989:AISystem(?system), ISO22989:hasDesign(?system, ?design) -> ISO22989:Edge(?design)"

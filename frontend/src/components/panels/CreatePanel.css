@@ -1,0 +1,90 @@
+/**
+ * CreatePanel.css
+ *
+ * Styles for the create panel and create buttons
+ * Matches AnnotationWindow design system
+ */
+
+/* Panel Container */
+.create-panel {
+  width: 300px;
+}
+
+/* Create Button Grid */
+.create-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-space-sm);
+}
+
+/* Create Button */
+.create-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--ui-space-md);
+  background: white;
+  border: 2px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-md);
+  cursor: pointer;
+  transition: all var(--ui-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.create-button::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--node-color, var(--ui-gray-300));
+  transition: width var(--ui-transition);
+}
+
+.create-button:hover {
+  background: var(--ui-gray-100);
+  border-color: var(--node-color, var(--ui-primary));
+  transform: translateX(4px);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.create-button:hover::before {
+  width: 8px;
+}
+
+.create-button:active {
+  transform: translateX(2px);
+  box-shadow: none;
+}
+
+/* Create Button Label */
+.create-button-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ui-gray-900);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .create-panel {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .create-button {
+    padding: var(--ui-space-sm);
+  }
+
+  .create-button-label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Focus state for accessibility */
+.create-button:focus {
+  outline: 2px solid var(--node-color, var(--ui-primary));
+  outline-offset: 2px;
+}

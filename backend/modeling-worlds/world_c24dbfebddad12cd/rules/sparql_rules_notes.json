@@ -1,0 +1,113 @@
+{
+  "absence_checks": {
+    "19": {
+      "class": "ISO22989:Automate",
+      "message": "Es fehlt eine Definition der Automatisierungsfunktion."
+    },
+    "20": {
+      "class": "ISO22989:DataProcess",
+      "message": "Die Daten werden bisher nicht vorverarbeitet. Soll die Anwendung direkt mit Rohdaten arbeiten oder fehlt die Zuweisung in der Modellierung aktuell?"
+    },
+    "21": {
+      "class": "ISO22989:Storage",
+      "message": "Aktuell werden noch keine Daten gespeichert."
+    },
+    "22": {
+      "class": "ISO22989:Acquisition",
+      "message": "Es werden aktuell noch keine Daten aufgezeichnet.",
+      "disabled": false
+    },
+    "23": {
+      "class": "ISO22989:Validation",
+      "message": "Das Modell wird aktuell noch nicht validiert."
+    },
+    "24": {
+      "class": "ISO22989:Evaluation",
+      "message": "Das Modell wird aktuell noch nicht evaluiert."
+    },
+    "25": {
+      "class": "ISO22989:Training",
+      "message": "Aktuell wird noch kein Modell trainiert. Wird auf ein Standardmodell zugegriffen oder fehlt das Training in der Modellierung?"
+    },
+    "26": {
+      "class": "ISO22989:Inference",
+      "message": "Aktuell wird noch keine Inferenz ausgeführt."
+    },
+    "27": {
+      "class": "VDI3682:ProcessOperator",
+      "message": "Aktuell ist noch kein Prozessoperator hinzugefügt. Soll kein technischer Prozess modelliert werden?"
+    }
+  },
+  "complex_rules": {
+    "28": {
+      "type": "training_inference_comparison",
+      "message": "Training und Inferenz ist auf unterschiedlichen Geräten, bitte prüfen, dass die Leistungsgrößen der Inferenzresource ausreichend ist."
+    }
+  },
+  "regulation_rules": {
+    "I": {
+      "type": "existence",
+      "class": "ISO22989:AISystem",
+      "message": "Es ist zu prüfen, ob das KI-System einer in Anhang III genannten Anwendungskategorie zugeordnet ist (z. B. sicherheitskritische Steuerung, Qualitätsfreigabe sicherheitsrelevanter Produkte, Zugangskontrolle) oder als sicherheitsrelevante Funktion einer regulierten Maschine / Anlage eingesetzt wird und damit als Hochrisiko-KI nach EU AI Act einzustufen ist."
+    },
+    "II": {
+      "type": "existence_or",
+      "classes": [
+        "ISO22989:Training",
+        "ISO22989:Validation",
+        "ISO22989:Evaluation",
+        "ISO22989:Inference"
+      ],
+      "message": "Wurden für die Entwicklung der KI weitere Werkzeuge eingesetzt? Wenn ja, ggf. die Pflicht zur Dokumentation der verwendeten Methoden und Werkzeuge nach Anhang IV, 2a beachten."
+    },
+    "III": {
+      "type": "complex_existence_absence",
+      "existence_classes": [
+        "ISO22989:Training",
+        "ISO22989:Validation",
+        "ISO22989:Evaluation"
+      ],
+      "absence_classes": [
+        "ISO22989:Acquisition",
+        "ISO22989:DataProcess"
+      ],
+      "message": "Wenn Hochrisiko-KI sind Herkunft, Relevanz, Qualität und Eignung der Trainings- und Validierungsdaten zu dokumentieren nach EU AI Act, Art. 10"
+    },
+    "IV": {
+      "type": "inference_on_process_resources",
+      "function_class": "ISO22989:Inference",
+      "resource_classes": [
+        "AIAS:Controller",
+        "AIAS:EdgeDevice",
+        "AIAS:Sensor",
+        "AIAS:Actuator"
+      ],
+      "process_operator_class": "VDI3682:ProcessOperator",
+      "message": "Prüfen, ob es sich aufgrund der Verteilung der Inferenzfunktionen um eine Regelungsaufgabe und ggf. um eine Hochrisikoanwendung handeln könnte. Wenn das der Fall ist, dann ist es wichtig, dass der Anwender eine erkennbare menschliche Kontroll- oder Abschaltmöglichkeit nach EU AI Act, Art 14 bereitstellt."
+    },
+    "V": {
+      "type": "assignment_or",
+      "function_classes": [
+        "ISO22989:Storage",
+        "ISO22989:DataProcess"
+      ],
+      "component_class": "AIAS:CloudSystem",
+      "message": "Bei personenbezogenen Daten ist zu prüfen, ob eine Rechtsgrundlage nach Art. 6 Abs. 1 DSGVO vorliegt (z. B. Einwilligung, Vertrag, rechtliche Verpflichtung)."
+    },
+    "VI": {
+      "type": "assignment_or",
+      "function_classes": [
+        "ISO22989:Storage",
+        "ISO22989:DataProcess"
+      ],
+      "component_class": "AIAS:CloudSystem",
+      "message": "Bei Unternehmensbezogenen Daten zunächst die Einwilligung durch den Anlagenbetreiber einholen."
+    }
+  },
+  "namespaces": {
+    "ISO22989": "http://www.semanticweb.org/schieseck/ISO22989#",
+    "AIAS": "http://www.semanticweb.org/schieseck/AIAS#",
+    "VDI3682": "http://www.semanticweb.org/schieseck/VDI3682#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  }
+}

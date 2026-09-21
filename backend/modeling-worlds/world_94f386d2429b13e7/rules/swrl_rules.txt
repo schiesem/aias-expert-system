@@ -1,0 +1,3 @@
+AIAS:hasCommunication(?a, ?c), AIAS:hasCommunication(?b, ?c), ISO7489:Communication(?c) -> AIAS:communicatesWith(?a, ?b)"
+AIAS:hasCommunication(?a, ?c), AIAS:hasCommunication(?b, ?c), ISO7489:Communication(?c) -> AIAS:communicatesWith(?a, ?b)"
+AIAS:hasCommunication(?a, ?c), AIAS:hasCommunication(?b, ?c), ISO7489:Communication(?c) -> AIAS:communicatesWith(?a, ?b)"

@@ -1,0 +1,19 @@
+{
+  "world_id": "94603512dd7df9ef",
+  "name": "Exemplarisches Beispiel_Ist-Modell",
+  "description": "Phase 2 model for Exemplarisches Beispiel",
+  "created_at": "2026-03-08T16:22:41.318340",
+  "last_modified": "2026-03-08T16:29:22.410329",
+  "node_count": 9,
+  "edge_count": 10,
+  "annotation_count": 2,
+  "project_name": "Exemplarisches Beispiel",
+  "dmme_phase": 2,
+  "phase_label": "Ist-Modell",
+  "parent_world_id": null,
+  "child_world_ids": [
+    "23a6623a4fc07a54"
+  ],
+  "phase_created_at": "2026-03-08T16:22:41.318340",
+  "is_phase_model": true
+}

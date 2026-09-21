@@ -1,0 +1,19 @@
+{
+  "world_id": "ac8b2af18ac4956f",
+  "name": "democase_Konzept-Modell",
+  "description": "Phase 3 model derived from democase_Ist-Modell",
+  "created_at": "2026-09-21T11:09:55.673378",
+  "last_modified": "2026-09-21T11:10:47.839546",
+  "node_count": 14,
+  "edge_count": 14,
+  "annotation_count": 5,
+  "project_name": "democase",
+  "dmme_phase": 3,
+  "phase_label": "Konzept-Modell",
+  "parent_world_id": "cdd7edca843dad59",
+  "child_world_ids": [
+    "bcd8c236fff04e8a"
+  ],
+  "phase_created_at": "2026-09-21T11:09:55.673378",
+  "is_phase_model": true
+}

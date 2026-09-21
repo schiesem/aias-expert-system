@@ -1,0 +1,461 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/schieseck/AIAS#"
+     xml:base="http://www.semanticweb.org/schieseck/AIAS"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+     xmlns:ISO22989="http://www.semanticweb.org/schieseck/ISO22989#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/schieseck/AIAS">
+        <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/ISO22989"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/ISO7489"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/schieseck/VDI3682"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled -->
+
+    <owl:AnnotationProperty rdf:about="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#communicatesWith -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#communicatesWith"/>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasCommunication -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasCommunication">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasComponent -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasComponent">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasFlow -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasFlow">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Function"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Process"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasFunction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasFunction">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Function"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasInputCommunication -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasInputCommunication">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#hasCommunication"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+        <rdfs:comment>Indicates incoming communication (from target to source)</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasOutputCommunication -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasOutputCommunication">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#hasCommunication"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Communication"/>
+        <rdfs:comment>Indicates outgoing communication (from source to target)</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasProduct -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasProduct">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Flow"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Product"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasRelation -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasRelation">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/schieseck/ISO22989#AISystem"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Relation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#isAssignedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#isAssignedBy"/>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#isAssignedTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#isAssignedTo">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Function"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#Assignment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/VDI3682#hasInput -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#hasInput">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#hasFlow"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/VDI3682#hasOutput -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#hasOutput">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#hasFlow"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/schieseck/AIAS#hasName">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Human-readable display name for the element</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Actuator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Actuator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein Actuator ist eine technische Ressource, die Signale oder Befehle in physische Aktionen umwandelt, um den Zustand eines Systems oder seiner Umgebung zu verändern.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#CloudSystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#CloudSystem">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein CloudSystem ist eine technische Ressource, die Rechen- und Speicherkapazitäten über ein Netzwerk bereitstellt und skalierbare Dienste für die Verarbeitung und Speicherung von Daten ermöglicht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Component -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Component">
+        <rdfs:comment xml:lang="de">Eine Component ist ein Bauelement eines Systems, das eine bestimmte Aufgabe erfüllt und durch Relationen mit anderen Komponenten verbunden ist.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#ComputerSystem -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#ComputerSystem">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein ComputerSystem ist eine technische Ressource, die Datenverarbeitung und -speicherung ermöglicht und als Oberbegriff für verschiedene Rechnertypen dient.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Controller -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Controller">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein Controller ist eine technische Ressource, die als speicherprogrammierbare Steuerung (SPS) oder Industriesteuerung die Automatisierung von Prozessen ermöglicht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#EdgeDevice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#EdgeDevice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein EdgeDevice ist eine technische Ressource, die Datenverarbeitung am Rand des Netzwerks (Edge) durchführt, um Latenzzeiten zu reduzieren und lokale Entscheidungen zu ermöglichen.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#ExternalCloud -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#ExternalCloud">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#CloudSystem"/>
+        <rdfs:comment xml:lang="de">Eine ExternalCloud ist ein CloudSystem, das von einem externen Anbieter betrieben wird und dessen Infrastruktur außerhalb der Organisationsgrenzen liegt.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Function -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Function">
+        <rdfs:comment xml:lang="de">Eine Function beschreibt das Verhalten eines Systems oder einer Komponente, also was das System tut oder leisten soll, unabhängig von seiner konkreten Realisierung.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#InternalCloud -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#InternalCloud">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#CloudSystem"/>
+        <rdfs:comment xml:lang="de">Eine InternalCloud ist ein CloudSystem, das innerhalb der eigenen Organisationsinfrastruktur betrieben wird und vollständig unter eigener Kontrolle steht.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#PersonalComputer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#PersonalComputer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein PersonalComputer ist eine technische Ressource in Form eines Einzelplatzrechners, der für die Interaktion mit Benutzern und die lokale Datenverarbeitung eingesetzt wird.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Process -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Process">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Function"/>
+        <rdfs:comment xml:lang="de">Ein Process ist eine spezielle Function, die eine Folge von Aktivitäten zur Umwandlung von Eingaben in Ausgaben beschreibt.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Relation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Relation">
+        <rdfs:comment xml:lang="de">Eine Relation beschreibt die Beziehung zwischen Systemelementen, insbesondere zwischen Komponenten oder zwischen Funktionen und Komponenten.
+
+**Quelle:** Haberfellner, Systems Engineering</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Resource -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Resource">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/schieseck/VDI3682#TechnicalRessource"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+        <rdfs:comment xml:lang="de">Eine Resource ist eine technische Komponente, die physische oder virtuelle Mittel zur Ausführung von Funktionen bereitstellt. Sie ist äquivalent zur TechnicalRessource aus VDI 3682.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/AIAS#Sensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/AIAS#Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Resource"/>
+        <rdfs:comment xml:lang="de">Ein Sensor ist eine technische Ressource, die physikalische oder chemische Größen erfasst und in verarbeitbare Signale umwandelt.
+
+**Quelle:** Dissertation Schieseck</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/ISO22989#Function -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO22989#Function">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Function"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO22989:Function ist eine Spezialisierung von AIAS:Function und repräsentiert Funktionen im Kontext von KI-Systemen gemäß ISO/IEC 22989.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </rdf:Description>
+
+
+
+    <!-- http://www.semanticweb.org/schieseck/ISO22989#Data equivalence to ISO7489#Data -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO22989#Data">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/schieseck/ISO7489#Data"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO22989:Data (KI-Daten) ist äquivalent zu ISO7489:Data (Netzwerk-Dateneinheit). Diese Äquivalenz ermöglicht es, dass Daten, die im KI-Kontext erzeugt werden (z.B. durch Acquisition), auch über Communication-Verbindungen übertragen werden können.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </rdf:Description>
+
+
+
+    <!-- http://www.semanticweb.org/schieseck/ISO7489#Communication -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/ISO7489#Communication">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Relation"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: ISO7489:Communication ist eine Spezialisierung von AIAS:Relation und modelliert Kommunikationsverbindungen zwischen Komponenten gemäß dem OSI-Referenzmodell (ISO/IEC 7498).
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/VDI3682#Assignment -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Assignment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Relation"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:Assignment ist eine Spezialisierung von AIAS:Relation und verbindet Funktionen (ProcessOperator) mit Komponenten (TechnicalRessource) gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/VDI3682#Flow -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#Flow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Relation"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:Flow ist eine Spezialisierung von AIAS:Relation und modelliert den gerichteten Fluss von Produkten, Energien oder Informationen zwischen Prozessoperatoren gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/schieseck/VDI3682#ProcessOperator">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Function"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:ProcessOperator ist eine Spezialisierung von AIAS:Function und beschreibt Umwandlungsvorgänge von Zuständen gemäß der Formalisierung technischer Prozesse nach VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/schieseck/VDI3682#State -->
+
+    <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/VDI3682#State">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/schieseck/AIAS#Component"/>
+        <rdfs:comment xml:lang="de">Im AIAS-Alignment: VDI3682:State ist eine Spezialisierung von AIAS:Component und repräsentiert Zustände von Produkten, Energien oder Informationen im Prozesskontext gemäß VDI 3682.
+
+**Quelle:** Dissertation Schieseck (AIAS-Alignment)</rdfs:comment>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Actuator"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#CloudSystem"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#ComputerSystem"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Controller"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#EdgeDevice"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#PersonalComputer"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/schieseck/AIAS#Sensor"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+

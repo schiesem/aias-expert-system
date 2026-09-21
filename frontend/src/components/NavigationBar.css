@@ -1,0 +1,85 @@
+/**
+ * NavigationBar.css
+ *
+ * Top navigation bar with three action buttons
+ */
+
+.navigation-bar {
+  position: fixed;
+  top: var(--ui-space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.navigation-content {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-xs);
+  padding: var(--ui-space-xs);
+  background: white;
+  border: 1px solid var(--ui-gray-300);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-space-sm);
+  padding: var(--ui-space-sm) var(--ui-space-md);
+  background: white;
+  color: var(--ui-gray-700);
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--ui-transition);
+  white-space: nowrap;
+}
+
+.nav-button:hover:not(:disabled) {
+  background: var(--ui-gray-50);
+  border-color: var(--ui-gray-300);
+  color: var(--ui-gray-900);
+}
+
+.nav-button:active:not(:disabled) {
+  background: var(--ui-gray-100);
+}
+
+.nav-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-button svg {
+  flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navigation-bar {
+    top: var(--ui-space-sm);
+    left: var(--ui-space-sm);
+    right: var(--ui-space-sm);
+    transform: none;
+  }
+
+  .navigation-content {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-button {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* Focus states for accessibility */
+.nav-button:focus {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: 2px;
+}
